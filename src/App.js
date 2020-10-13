@@ -6,8 +6,8 @@ import Sports from './Components/Sports'
 import Teams from './Components/Teams'
 import Matches from './Components/Matches'
 import About from './Components/About'
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 function App() {
   return (
     <Router>
