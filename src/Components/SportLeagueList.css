@@ -1,0 +1,14 @@
+.league-list{
+    text-align:center ;
+    color: floralwhite;
+    background-color:#91959c;
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 2em;
+}
+.season-year{
+    text-align:center ;
+    color: gainsboro;
+    background-color:#91959c;
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 1em;
+}

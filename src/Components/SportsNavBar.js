@@ -1,3 +1,6 @@
+/**
+ * @author @Kilatch
+ */
 import React, { useState } from 'react'
 import './SportsNavBar.css'
 

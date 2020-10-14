@@ -1,5 +1,10 @@
+/**
+ * @author @Kilatch
+ */
 import React from 'react'
 import SportsNavBar from './SportsNavBar'
+import Table from './Table'
+import SportLeagueList from './SportLeagueList'
 
 class  Sports extends React.Component {
  
@@ -33,6 +38,7 @@ class  Sports extends React.Component {
     
     
   }
+ 
 
   render(){
     const sports = [
@@ -48,7 +54,12 @@ class  Sports extends React.Component {
     ]
     return(
      
+         <div>
          <SportsNavBar sports={sports}  sportHandler={this.sportHandler} />
+         <SportLeagueList sportId={this.state.sportId}/>
+
+         
+         </div>
     
      
     )
