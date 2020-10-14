@@ -11,6 +11,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 export default class Table extends Component {
+  //TODO: ta in season id som ett argument 
+  //TODO: della upp tablerow till en separat component 
+  //TODO: ta in data't som argument istället för att hämta det själv
 
   state = {
     error: null,
