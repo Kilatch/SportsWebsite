@@ -1,5 +1,17 @@
 import React from 'react'
+import SportsNavBar from './SportsNavBar'
 function Sports() {
-  return <h1>SPORT PAGE</h1>
+  const sports = [
+    'Football',
+    'BasketBall',
+    'Cricket',
+    'Swimming',
+    'Running',
+    'Karate',
+    'Ice Hockey',
+    'Breaking',
+    'Fishing',
+  ]
+  return <SportsNavBar sports={sports} />
 }
 export default Sports
