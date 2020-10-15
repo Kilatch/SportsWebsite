@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import api from './api'
+import React from 'react'
 
 import MatTable from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,33 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 export default function StandingTable(props) {
-  //TODO: ta in season id som ett argument 
-  //TODO: della upp tablerow till en separat component 
-  //TODO: ta in data't som argument istället för att hämta det själv
-
-  const [state, setState] = useState({
-    error: null,
-    isLoaded: false,
-    items: []
-  });
-
-  useEffect(() => {
-    api.getTableBySeasonId(props.id).then(res => {
-      setState({
-        isLoaded: true,
-        items: res.data
-      })
-      console.log(res.data)
-    }, error => {
-      setState({
-        isLoaded: true,
-        error: error,
-        items: []
-      })
-      console.log(state)
-    })
-    // eslint-disable-next-line
-  }, [])
 
   return (
     <TableContainer component={Paper}>
@@ -55,7 +27,7 @@ export default function StandingTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {state.items.map(row => (
+          {props.items.map(row => (
             <TableRow key={row.teamId}>
               <TableCell align="right">{row.teamName}</TableCell>
               <TableCell align="right">{row.gamesPlayed}</TableCell>
@@ -67,23 +39,9 @@ export default function StandingTable(props) {
               <TableCell align="right">{row.goalDifference}</TableCell>
               <TableCell align="right">{row.points}</TableCell>
             </TableRow>
-          ))
-          }
+          ))}
         </TableBody>
       </MatTable>
     </TableContainer>
   )
-  /*
-  const { error, isLoaded, items } = this.state;
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      
-    );
-  }
-  */
-
 }
