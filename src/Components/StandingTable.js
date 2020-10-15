@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from './api'
 
-
 import MatTable from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -17,7 +16,7 @@ export default function StandingTable(props) {
 
   const [state, setState] = useState({
     error: null,
-    isLoaded: true,
+    isLoaded: false,
     items: []
   });
 
@@ -27,17 +26,18 @@ export default function StandingTable(props) {
         isLoaded: true,
         items: res.data
       })
-      console.log(state)
+      console.log(res.data)
     }, error => {
       setState({
         isLoaded: true,
-        error
+        error: error,
+        items: []
       })
+      console.log(state)
     })
-  },[])
+    // eslint-disable-next-line
+  }, [])
 
-
-  const { error, isLoaded, items } = state;
   return (
     <TableContainer component={Paper}>
       <MatTable aria-label="simple table">
@@ -55,20 +55,19 @@ export default function StandingTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {
-            state.items.map(row => (
-              <TableRow key={row.temaId}>
-                <TableCell align="right">{row.teamName}</TableCell>
-                <TableCell align="right">{row.gamesPlayed}</TableCell>
-                <TableCell align="right">{row.wins}</TableCell>
-                <TableCell align="right">{row.draws}</TableCell>
-                <TableCell align="right">{row.loss}</TableCell>
-                <TableCell align="right">{row.goals}</TableCell>
-                <TableCell align="right">{row.goalsConseded}</TableCell>
-                <TableCell align="right">{row.goalDifference}</TableCell>
-                <TableCell align="right">{row.points}</TableCell>
-              </TableRow>
-            ))
+          {state.items.map(row => (
+            <TableRow key={row.teamId}>
+              <TableCell align="right">{row.teamName}</TableCell>
+              <TableCell align="right">{row.gamesPlayed}</TableCell>
+              <TableCell align="right">{row.wins}</TableCell>
+              <TableCell align="right">{row.draws}</TableCell>
+              <TableCell align="right">{row.loss}</TableCell>
+              <TableCell align="right">{row.goals}</TableCell>
+              <TableCell align="right">{row.goalsConseded}</TableCell>
+              <TableCell align="right">{row.goalDifference}</TableCell>
+              <TableCell align="right">{row.points}</TableCell>
+            </TableRow>
+          ))
           }
         </TableBody>
       </MatTable>
