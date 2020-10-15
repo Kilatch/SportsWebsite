@@ -1,8 +1,7 @@
 import React, { useState, useEffect} from 'react'
-import api from './api'
 import Table from './StandingTable'
 
-export default function LoadSeasonTable(props) {
+export default function LoadTable(props) {
 
   const [state, setState] = useState({
     error: null,
@@ -11,7 +10,7 @@ export default function LoadSeasonTable(props) {
   });
 
   useEffect(() => {
-    api.getTableBySeasonId(props.id).then(res => {
+    props.getData().then(res => {
       setState({
         isLoaded: true,
         items: res.data
