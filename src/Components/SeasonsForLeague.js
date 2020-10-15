@@ -55,8 +55,8 @@ export default class SeasonsForLeague extends Component {
             let season=this.state.items[0];
             return (
                 <div>
-                    <h1 className="season-year">{season.startYear}</h1>
-                    <Table seasonId={season.id}/>                
+                    <h4 className="season-year">{season.startYear}</h4>
+                    <Table seasonId={season.id} allSeasons={this.state.items}/>                
                 </div>
             )
         }

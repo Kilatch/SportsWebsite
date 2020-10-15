@@ -49,7 +49,7 @@ export default class SportLeagueList extends Component {
                     <ul className="league-list">
                         {this.state.items.map((data, index) => (
                             <div key={index}>
-                            <h1>{data.name}</h1>
+                            <h2>{data.name}</h2>
                             <SeasonsForLeague leagueId={data.id}/>
                             </div>
                         ))}

@@ -18,17 +18,18 @@ const useStyles = makeStyles({
   },
 });
 
-export default function LabelBottomNavigation() {
+export default function LabelBottomNavigation({funk}) {
   const classes = useStyles();
-  const [value, setValue] = React.useState('recents');
+  const [value, setValue] = React.useState('');
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+  //  setValue(newValue);
+    console.log(newValue)
   };
 
   return (
-    <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-      <BottomNavigationAction label="Old Seasons" value="recents" icon={<RestoreIcon />} />
+    <BottomNavigation value={value} onChange={(event,newValue)=>funk(event,newValue)} className={classes.root}>
+      <BottomNavigationAction  label="Old Seasons" value="recents" icon={<RestoreIcon />} />
      
     </BottomNavigation>
   );

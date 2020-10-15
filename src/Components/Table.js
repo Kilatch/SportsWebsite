@@ -20,15 +20,33 @@ export default class Table extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            seasonIndex:0,
             seasonId: props.seasonId,
+            allSeasons:props.allSeasons,
             error: null,
             isLoaded: true,
             items: []
         };
         this.updateComponent = this.updateComponent.bind(this);
+        this.getOldSeason = this.getOldSeason.bind(this);
 
     }
-
+getOldSeason(event,newValue){
+    if(newValue=='recents'){
+        this.setState(prevState=>{
+          return{
+            seasonIndex :  prevState.seasonIndex+1
+          }        
+ 
+        })
+        if(this.state.allSeasons[this.state.seasonIndex]!=null){
+            let s=this.state.allSeasons[this.state.seasonIndex];
+            this.setState({seasonId:s.id})
+        }
+       /// console.log(this.state.seasonIndex)
+    }
+     
+}
 
   componentDidMount() {
     this.updateComponent();
@@ -38,7 +56,8 @@ export default class Table extends Component {
         this.setState({
             items: res.data,
             seasonId: this.props.seasonId,
-            isLoaded: true
+            isLoaded: true,
+            seasonIndex:0,
            
         })
         console.log(this.state.items)
@@ -91,7 +110,7 @@ export default class Table extends Component {
             </TableBody>
           </MatTable>
         </TableContainer>
-        <LabelBottomNavigation/>
+        <LabelBottomNavigation funk={this.getOldSeason}/>
         </div>
       )
 
