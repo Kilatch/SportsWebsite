@@ -7,7 +7,11 @@
 }
 
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(#ea3a3a, #4758d6);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
 }
 
 a{
@@ -17,6 +21,7 @@ a{
 nav{
     display: flex;
     justify-content: space-around;
+    background-color: #201c1c;
     min-height: 10vh;
     align-items: center;
 }
@@ -27,18 +32,19 @@ nav{
 
 .logo{
     display: flex;
-    color: lightcoral;
+    color: #eeeded;
+    align-items: center;
     font-size: 2rem;
 }
 
-.logo h4{
+
+.logo:first-child{
     margin-left: 7px;
-    letter-spacing: 1px;
     font-weight: lighter;
 }
 
 .nav-links{
-    width: 60%;
+    width: 50%;
     display: flex;
     list-style: none;
     justify-content: space-around;
@@ -48,18 +54,22 @@ nav{
 
 .link a {
     padding: 10px;
-    color: lightsalmon;
+    color: white;
+    transition: color 0.2s ease-in;
 }
 
 .link a:hover{
-    background-color: white;
-    color: red;
+    color: 	#4758d6;
 }
 
 .hamburger-toggle{
     cursor: pointer;
-    color: lightskyblue;
     display: none;
+    color: white;
+}
+
+.hamburger-toggle:hover{
+    color: #ea3a3a;
 }
 
 
@@ -72,7 +82,11 @@ nav{
     }
     nav{
         justify-content: space-between;
-        margin: 0px 50px
+        padding: 0px 50px
+    }
+
+    .link a {
+        color: #201c1c;
     }
 
     .nav-links{
@@ -84,7 +98,7 @@ nav{
         height: 90vh;
         width: 100%;
         top: 10vh;
-        background-color: teal;
+        background-color: #eeeded;
         font-size: 2rem;
         transition: all 0.5s ease-in;
     }

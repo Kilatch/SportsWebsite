@@ -3,10 +3,10 @@ import './App.css'
 import Nav from './Components/Nav'
 import Home from './Components/Home'
 import Sports from './Components/Sports'
-import Teams from './Components/Teams'
 import Matches from './Components/Matches'
 import About from './Components/About'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 
 function App() {
   return (
@@ -16,7 +16,6 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/sports" component={Sports} />
-          <Route path="/teams" component={Teams} />
           <Route path="/matches" component={Matches} />
           <Route path="/about" component={About} />
         </Switch>

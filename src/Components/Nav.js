@@ -7,11 +7,16 @@ function Nav() {
   const handleNavToggle = () => {
     setNavToggle(!navToggle)
   }
+
+  const setHandleFalse = () => {
+    setNavToggle(false)
+  }
   return (
     <nav>
       <div className="logo">
-        <i className="fas fa-futbol" />
-        <h4>Ball</h4>
+        <i className="fas fa-futbol link icon">
+          <Link to="/">Ball</Link>
+        </i>
       </div>
       <ul className={`nav-links ${navToggle && 'active'}`}>
         <li className="link">
@@ -19,11 +24,9 @@ function Nav() {
         </li>
 
         <li className="link">
-          <Link to="/sports">Sports</Link>
-        </li>
-
-        <li className="link">
-          <Link to="/teams">Teams</Link>
+          <Link onClick={setHandleFalse} to="/sports">
+            Sports
+          </Link>
         </li>
 
         <li className="link">
