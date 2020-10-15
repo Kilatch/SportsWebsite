@@ -1,22 +1,70 @@
-  
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import api from './api'
-import './Sports.css'
-function Sports() {
-  const [sports, setSports] = useState([])
+/**
+ * @author @Kilatch
+ */
+import React from 'react'
+import SportsNavBar from './SportsNavBar'
+import Table from './Table'
+import SportLeagueList from './SportLeagueList'
 
-  useEffect(() => {
-    axios
-      .get('http://grupp5test.jls-sto1.elastx.net/get/sports')
-      .then((data) => setSports(data.data))
-  })
-  return (
-    <div className="card-container">
-      {sports.map((data, index) => (
-        <h1 key={index}>{data.name}</h1>
-      ))}
-    </div>
-  )
+class  Sports extends React.Component {
+ 
+  constructor(){
+    super()
+
+    this.state ={
+      sportId:2
+    }
+
+    this.sportHandler= this.sportHandler.bind(this);
+  
+    
+  }
+  sportHandler(sport) {
+    let sportHashMap=new Map([
+      ['Bandy',1],
+      ['Football',2],
+      ['Hockey',3],
+      ['Handboll',4],
+      ['Basket',5],
+      ['Cricket',2],
+      ['Swimming',2],
+      ['Running',2],
+      ['Fishing',2],
+      
+    ]);
+
+    this.setState({sportId: sportHashMap.get(sport)});
+    
+    
+    
+  }
+ 
+
+  render(){
+    const sports = [
+      'Football',
+      'Basket',
+      'Cricket',
+      'Swimming',
+      'Running',
+      'Bandy',
+      'Hockey',
+      'Handboll',
+      'Fishing',
+    ]
+    return(
+     
+         <div>
+         <SportsNavBar sports={sports}  sportHandler={this.sportHandler} />
+         <SportLeagueList sportId={this.state.sportId}/>
+
+         
+         </div>
+    
+     
+    )
+  }
+  
+  
 }
 export default Sports
