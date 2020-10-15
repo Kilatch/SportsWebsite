@@ -6,6 +6,12 @@
     box-sizing: border-box;
 }
 
+.App{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 body{
     font-family: 'Open Sans', sans-serif;
     background: linear-gradient(#ea3a3a, #4758d6);

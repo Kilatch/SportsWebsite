@@ -19,7 +19,7 @@ const SportsNavBar = ({ sports }) => {
   }
 
   const animateSportsNavLinks = (fn) => {
-    const navBar = document.getElementById('sportsNavBar')
+    const navBar = document.getElementById('sportsNavLinks')
     setTimeout(() => {
       navBar.style.transform = `translateX(0%)`
       fn()
@@ -28,14 +28,14 @@ const SportsNavBar = ({ sports }) => {
   }
 
   return (
-    <div className="sports-nav-bar">
+    <div id="sportsNavBar" className="sports-nav-bar">
       <i
         onClick={() => {
           animateSportsNavLinks(previousSports)
         }}
         className={`fas fa-minus add-more ${currentPage <= 1 && 'hide'}`}
       ></i>
-      <ul id="sportsNavBar" className="sports-nav-links">
+      <ul id="sportsNavLinks" className="sports-nav-links">
         {currentSports.map((sport, index) => (
           <li key={index}>{sport}</li>
         ))}
