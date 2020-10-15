@@ -27,10 +27,10 @@ const getSeasonsByLeague = async (id) => {
   return res
 }
 
-
 export default {
   getLeagueBySport,
   getSports,
   getTableBySeasonId,
   getSeasonsByLeague,
 }
+

@@ -5,8 +5,7 @@
 import React, { Component } from 'react'
 import api from './api'
 import './SportLeagueList.css'
-import Table from './Table'
-
+import LoadTable from './LoadTable'
 
 export default class SeasonsForLeague extends Component {
 
@@ -56,7 +55,7 @@ export default class SeasonsForLeague extends Component {
             return (
                 <div>
                     <h4 className="season-year">{season.startYear}</h4>
-                    <Table seasonId={season.id} allSeasons={this.state.items}/>                
+                    <LoadTable getData={()=>api.getTableBySeasonId(season.id)} />                
                 </div>
             )
         }
