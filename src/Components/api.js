@@ -7,14 +7,8 @@ import axios from 'axios'
 
 const API_URL = 'http://grupp5test.jls-sto1.elastx.net/get'
 
-const getGeneral = async (path, varibles) => {
-  let apiCall = API_URL + '/' + path
-
-  varibles.array.forEach(element => {
-    apiCall += '/' + element
-  });
-
-  let res = await axios.get(apiCall)
+const getGamesByTeamId = async (id) => {
+ let res = await axios.get(API_URL + '/games/' + id)
   return res
 }
 
@@ -42,6 +36,6 @@ export default {
   getSports,
   getTableBySeasonId,
   getSeasonsByLeague,
-  getGeneral,
+  getGamesByTeamId,
 }
 
