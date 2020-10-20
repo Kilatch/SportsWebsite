@@ -6,6 +6,11 @@ import axios from 'axios'
 
 const API_URL = 'http://grupp5test.jls-sto1.elastx.net/get'
 
+const getGamesByTeamId = async (id) => {
+ let res = await axios.get(API_URL + '/games/' + id)
+  return res
+}
+
 const getTableBySeasonId = async (id) => {
   let res = await axios.get(API_URL + "/tablebyseason/" + id)
   return res
@@ -85,6 +90,5 @@ export default {
   getSeasonsByLeague,
   getAllAvailabeSeasons,
   getMatchBySeason,
- 
-
+  getGamesByTeamId,
 }
