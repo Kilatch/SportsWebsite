@@ -1,0 +1,12 @@
+.match-list{
+    background-color: black;
+    align-self: center;
+    display: flex;
+    position: relative;
+}
+.card-match{
+    display: flex;
+    text-align: center;
+    background-color:black;
+    position: relative;
+}

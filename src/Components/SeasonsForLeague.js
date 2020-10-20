@@ -1,7 +1,6 @@
 /**
  *@author @huseinmb91
  */
-
 import React, { Component } from 'react'
 import api from './api'
 import './SportLeagueList.css'

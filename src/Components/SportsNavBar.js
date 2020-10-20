@@ -40,7 +40,7 @@ const SportsNavBar = ({ sports ,sportHandler}  ) => {
       ></i>
       <ul id="sportsNavLinks" className="sports-nav-links">
         {currentSports.map((sport, index) => (
-          <li key={index} onClick={() => sportHandler(sport)}>{sport} </li>
+          <li key={index} onClick={() => sportHandler(sport)}>{sport}</li>
         ))}
       </ul>
       <i
