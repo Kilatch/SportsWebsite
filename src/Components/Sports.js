@@ -1,17 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import SportsNavBar from './SportsNavBar'
-function Sports() {
-  const sports = [
-    'Football',
-    'BasketBall',
-    'Cricket',
-    'Swimming',
-    'Running',
-    'Karate',
-    'Ice Hockey',
-    'Breaking',
-    'Fishing',
-  ]
-  return <SportsNavBar sports={sports} />
+import { getSports } from './api'
+const Sports = () => {
+  const [sports, setSports] = useState([])
+
+  const sportClicked = (id) => {}
+
+  useEffect(() => {
+    getSports().then((data) => {
+      setSports(data.data)
+    })
+  }, [])
+  return <SportsNavBar sports={sports} onClick={sportClicked} />
 }
 export default Sports
