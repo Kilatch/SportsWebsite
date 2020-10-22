@@ -1,70 +1,30 @@
 /**
- * @author @Kilatch
+ * @author Ali
  */
-import React from 'react'
+
+import React, { useState, useEffect } from 'react'
 import SportsNavBar from './SportsNavBar'
-import Table from './Table'
+import api from './api'
 import SportLeagueList from './SportLeagueList'
 
-class  Sports extends React.Component {
- 
-  constructor(){
-    super()
+const Sports = () => {
+  const [sports, setSports] = useState([])
+  const [sportID, setSportID] = useState(0)
 
-    this.state ={
-      sportId:2
-    }
-
-    this.sportHandler= this.sportHandler.bind(this);
-  
-    
+  const sportClicked = (id) => {
+    setSportID(id)
   }
-  sportHandler(sport) {
-    let sportHashMap=new Map([
-      ['Bandy',1],
-      ['Football',2],
-      ['Hockey',3],
-      ['Handboll',4],
-      ['Basket',5],
-      ['Cricket',2],
-      ['Swimming',2],
-      ['Running',2],
-      ['Fishing',2],
-      
-    ]);
 
-    this.setState({sportId: sportHashMap.get(sport)});
-    
-    
-    
-  }
- 
-
-  render(){
-    const sports = [
-      'Football',
-      'Basket',
-      'Cricket',
-      'Swimming',
-      'Running',
-      'Bandy',
-      'Hockey',
-      'Handboll',
-      'Fishing',
-    ]
-    return(
-     
-         <div>
-         <SportsNavBar sports={sports}  sportHandler={this.sportHandler} />
-         <SportLeagueList sportId={this.state.sportId}/>
-
-         
-         </div>
-    
-     
-    )
-  }
-  
-  
+  useEffect(() => {
+    api.getSports().then((data) => {
+      setSports(data.data)
+    })
+  }, [])
+  return (
+    <div>
+      <SportsNavBar sports={sports} onClick={sportClicked} />
+      <SportLeagueList sportId={sportID} />
+    </div>
+  )
 }
 export default Sports
