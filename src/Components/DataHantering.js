@@ -1,4 +1,3 @@
-import { ListAltRounded } from "@material-ui/icons";
 
 const getAvailableSeasonIds = (matchlist) => {
     let list = [];

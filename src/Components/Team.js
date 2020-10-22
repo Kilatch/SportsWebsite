@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import api from './api'
 import CardObj from './CardObj';
+import { Grid } from '@material-ui/core';
 import StandingTable from './StandingTable';
 
 function Team({ match: { params: { id } } }) {
@@ -55,13 +56,17 @@ function Team({ match: { params: { id } } }) {
       <div>
         <h1>{state.teamName}</h1>
         <StandingTable items={state.standing} />
-        {state.matches.map((match, i) => (
-          <CardObj key={i} d={match} getMatchTwo={(x,y)=>{return null}} />
-        ))}
+           <Grid container spacing={2}>
+            {state.matches.map((match, i) => (
+
+              <CardObj key={i} d={match} getMatchTwo={(x, y) => { return null }} />
+            ))}
+            
+            </Grid>
       </div>
     )
   } else {
-    console.log(state)
+            console.log(state)
     return null;
   }
 }
