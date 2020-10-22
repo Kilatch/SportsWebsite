@@ -34,7 +34,7 @@ export default function DateP({ dates, dateHandler }) {
     return !dates.includes(d)
   }
   const handleEffectiveDateChange = (date) => {
-    if (formateDate(date) != '2019-10-27' && !state.started) {
+    if (formateDate(date) != dates[dates.length] && !state.started) {
       dateHandler(formateDate(date));
       setState({
         datum: date,

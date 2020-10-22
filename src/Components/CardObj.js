@@ -99,7 +99,7 @@ export default function CardObj({ d, getMatchTwo }) {
         </div>
 
         <div className={classes.dii}>
-          <a href={"/team/" + d.homeTeam.id} className={classes.teamCard}>
+          <a href={"/team/" + d.awayTeam.id} className={classes.teamCard}>
             {d.awayTeam.name}
           </a>
           <p className={classes.scoreCard} >
