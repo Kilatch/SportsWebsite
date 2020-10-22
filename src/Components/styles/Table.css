@@ -1,0 +1,45 @@
+
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  border: 10px solid #ddd;
+  border-collapse: collapse;
+  color: black;
+  background-color: #FFFFFF;
+  width: 100%;
+}
+
+td, th {
+  text-align: center;
+  padding: 5px;
+  padding-right: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+@media (orientation: portrait) {
+  table {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    border-collapse: collapse;
+    color: black;
+    background-color: #FFFFFF;
+    width: 100%;
+  }
+
+  .goals {
+    display: none;
+  }
+  
+  td, th {
+
+    text-align: right;
+    padding: 10px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+}
