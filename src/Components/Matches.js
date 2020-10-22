@@ -125,8 +125,8 @@ export default class Matches extends Component {
             return (
                 <div>
 
-                    <div>
-                        <ListItem >
+                    <div className="dii">
+                        <ListItem s>
                         <SimpleMenu   className = {this.useStyles.filter} handelList={this.handelList} season={"Select season"} seasons={this.state.availableSeasons} />
                         <DateP   className = {this.useStyles.filter} dates={DataHantering.getAllDates(this.state.items)} dateHandler={this.dateHandler} />
                         </ListItem>
