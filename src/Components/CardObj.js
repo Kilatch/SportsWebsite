@@ -1,79 +1,90 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { Block, CenterFocusStrong, FullscreenExit } from '@material-ui/icons';
-import sportImage from './s.jpg'
-import './general.css'
-import { Grid } from '@material-ui/core';
+import React from "react";
+import { Grid, Box, Typography, Avatar, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import Teamf from './teamf.jpg'
+import TeamS from './teamfirst.png'
+import Sp from './road.jpg'
+import { blue, lightBlue } from "@material-ui/core/colors";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles({
   root: {
-    width: 380,
-    minHeight: 250,
-    backgroundImage: `url(${sportImage})`,
-    border: 3,
-    borderRadius: 8,
-    padding: '0 30px',
-    marginLeft: "25px",
-    marginTop: "25px",
-    //backgroundColor: "#b69896"
-
+    backgroundImage: `url(${Sp})`,
+    border: 0,
+    borderRadius: 20,
+    boxShadow: '7 8px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    padding: '3 10px',
+    width: 350,
+    minHeight: 180,
+    marginLeft: 25,
+    marginTop: 25
+  },
+  teamscore: {
+    display: "flex",
+    width: 350,
+    border: 6,
+    height: 38
 
   },
-  card: {
-    width: 380,
-    minHeight: 250,
-    backgroundImage: `url(${sportImage})`,
+  matchDateAndLeague: {
+    display: "flex",
+    width: 350,
+    border: 6,
+    height: 38
+
+  },
+  teamBox: {
+
+    flexGrow: 1,
+    color: "#dfe8e1",
     marginLeft: 30,
-    marginTop: 30,
+    marginTop: 6,
+
   },
 
-  teamCard: {
-    color: '#212121',
-    fontFamily: 'Arial',
-    marginLeft: 15,
-    fontStyle: 'italic',
+  matchDateBox: {
+    flexGrow: 1,
+    color: "#ebfafa",
+    marginLeft: 150,
+    marginTop: 10,
+  },
+  date: {
+
+    fontFamily: 'Raleway',
+    fontWeight: lightBlue,
+    fontStyle: "italic",
+    fontSize: 10,
+
+  },
+  team: {
+    fontFamily: 'Raleway',
+    fontWeight: "bold",
     fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 25,
+  },
+  score: {
+    fontFamily: 'Raleway',
+    fontWeight: "bold",
+    fontStyle: "italic",
+    fontSize: 28,
 
   },
+  leagueTxt: {
+    fontFamily: 'Raleway',
+    fontSize: 18,
+    color: blue,
+    alignSelf: 'center'
 
-  scoreCard: {
-    color: '#212121',
-    marginRight: 20,
-    fontFamily: 'Arial',
-    fontStyle: 'italic',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 25,
   },
+  scoreBox: {
+    color: "#ed7a53",
+    marginRight: 20
 
-  seasonLeague: {
-
-    color: '#e8eaf6',
-    marginTop: 50,
-    fontSize: 12,
-    textAlign: 'center',
-    fontStyle: 'italic',
   },
+  leagueBox: {
 
-  dii: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
+    background: '#b3b3b3',
 
-  moreMatch: {
-    fontSize: 12,
-    display: 'flex',
-    textAlign: 'center',
-    fontStyle: 'italic',
-    justifyContent: 'flex-end',
   },
 
 });
@@ -85,44 +96,48 @@ export default function CardObj({ d, getMatchTwo }) {
 
   return (
 
-    <Card className={classes.card} >
 
-      <CardContent>
-        <div className={classes.dii}>
-          <a href={"/team/" + d.homeTeam.id} className={classes.teamCard}>
-            {d.homeTeam.name}
-          </a>
-          <p className={classes.scoreCard} component="p">
-            {d.result.homeScore}
-          </p>
+    <Grid container directin="column" className={classes.root}>
 
-        </div>
 
-        <div className={classes.dii}>
-          <a href={"/team/" + d.awayTeam.id} className={classes.teamCard}>
-            {d.awayTeam.name}
-          </a>
-          <p className={classes.scoreCard} >
-            {d.result.awayScore}
-          </p>
-        </div>
+      <Box flexDirection="row" className={classes.teamscore}>
+        <Avatar alt="src" src={Teamf}></Avatar>
+        <Box className={classes.teamBox}>
+          <a href={"/team/" + d.homeTeam.id} className={classes.team}>{d.homeTeam.name}</a>
+        </Box>
 
-        <div className={classes.seasonLeague}>
-          <p gutterBottom >
-            {d.date}
+        <Box className={classes.scoreBox}>
+          <Typography className={classes.score}>{d.result.homeScore}</Typography>
+        </Box>
+      </Box>
+      <Box flexDirection="row" className={classes.teamscore}>
+        <Avatar alt="src" src={TeamS}></Avatar>
+        <Box className={classes.teamBox}>
+          <a href={"/team/" + d.awayTeam.id} className={classes.team}>{d.awayTeam.name}</a>
+        </Box>
 
-          </p>
-          <p gutterBottom>
+        <Box className={classes.scoreBox}>
+          <Typography className={classes.score}>{d.result.awayScore}</Typography>
+        </Box>
+      </Box>
+      <Box flexDirection="column" className={classes.matchDateAndLeague}>
+
+        <Box className={classes.matchDateBox}>
+          <Typography className={classes.date}>{d.date}</Typography>
+        </Box>
+
+        <Box className={classes.leagueBox}>
+          <Typography className={classes.leagueTxt}>
             {d.round.season.league.sport.name + "-" + d.round.season.league.name + " " + d.round.season.startYear}
-          </p>
-        </div>
+          </Typography>
+        </Box>
+      </Box>
+      <Box>
+        <ExpandMoreIcon onClick={() => getMatchTwo(d.awayTeam.id, d.homeTeam.id)} />
+      </Box>
 
-      </CardContent>
 
-      <Button className={classes.moreMatch} onClick={() => getMatchTwo(d.awayTeam.id, d.homeTeam.id)} >
-        More Matches
-        </Button>
-    </Card>
+    </Grid>
   );
 
 }

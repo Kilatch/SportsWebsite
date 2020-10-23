@@ -12,6 +12,8 @@ import ReactDOM from 'react-dom';
 import ControlledOpenSelect from './SimpleMenu'
 import SimpleMenu from './SimpleMenu'
 import DateP from './DatePickers'
+import GridList from '@material-ui/core/GridList'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 
 
@@ -57,6 +59,16 @@ export default class Matches extends Component {
 
 
             },
+            gridList: {
+                flexDirection:'row',
+                flexWrap: 'nowrap',
+                width: '100%',
+               
+                // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+                transform: 'translateZ(0)',
+                length:'50%',
+              },
+         
         }));
 
 
@@ -132,7 +144,7 @@ export default class Matches extends Component {
                         </ListItem>
                     </div>
 
-                    <Grid container spacing={2} className={this.useStyles.grid}>
+                    <Grid className={this.useStyles.gridList}>
                         <Grid item container xs={12}>
                             {this.state.itemsToShow.map((data, index) => (
                                 <div key={index}>
@@ -145,7 +157,7 @@ export default class Matches extends Component {
             )
         }
 
-        else return null
+        else return <CircularProgress color="secondary" />
 
 
     }
