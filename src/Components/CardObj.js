@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import { shadows } from '@material-ui/system'
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -31,6 +32,8 @@ const useStyles = makeStyles({
     backgroundImage: `url(${sportImage})`,
     marginLeft: 30,
     marginTop: 30,
+    borderRadius : 25,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
   },
 
   teamCard: {
@@ -48,7 +51,7 @@ const useStyles = makeStyles({
     color: '#212121',
     marginRight: 20,
     fontFamily: 'Arial',
-    fontStyle: 'italic',
+    fontStyle: " Courier New",
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 25,
@@ -69,11 +72,14 @@ const useStyles = makeStyles({
   },
 
   moreMatch: {
-    fontSize: 12,
-    display: 'flex',
-    textAlign: 'center',
-    fontStyle: 'italic',
-    justifyContent: 'flex-end',
+    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    marginRight : 0,
   },
 
 });
@@ -108,11 +114,11 @@ export default function CardObj({ d, getMatchTwo }) {
         </div>
 
         <div className={classes.seasonLeague}>
-          <p gutterBottom >
+          <p >
             {d.date}
 
           </p>
-          <p gutterBottom>
+          <p>
             {d.round.season.league.sport.name + "-" + d.round.season.league.name + " " + d.round.season.startYear}
           </p>
         </div>
