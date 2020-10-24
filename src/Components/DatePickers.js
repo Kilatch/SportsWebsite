@@ -3,15 +3,31 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles';
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
   DatePicker
 } from '@material-ui/pickers';
+import { CallMissedSharp } from '@material-ui/icons';
+
+const useStyles = makeStyles({
+  b: {
+   color: ' #ffff',
+    '&:hover': {
+      backgroundColor: "#b0bec5",
+    },
+  },
+
+});
 
 
 export default function DateP({ dates, dateHandler }) {
+
+  const classes = useStyles();
   // The first commit of Material-UI
   const [state, setState] = useState({
     datum: new Date(),
@@ -59,12 +75,15 @@ export default function DateP({ dates, dateHandler }) {
 
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <KeyboardDatePicker
+    <MuiPickersUtilsProvider utils={DateFnsUtils} >
+      <KeyboardDatePicker className = {classes.b}
         autoOk={true}
         variant="inline"
         inputVariant="outlined"
         format="yyyy-MM-dd"
+        leftArrowIcon={<KeyboardArrowLeft />}
+        rightArrowIcon={<KeyboardArrowRight />}
+        InputProps = {{ style: { fontFamily: 'Arial', color: 'white'}}}
         value={state.datum}
         onChange={handleEffectiveDateChange}
         InputAdornmentProps={{ position: "start" }}

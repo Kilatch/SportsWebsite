@@ -11,8 +11,8 @@ import DateP from './DatePickers'
 
 
 
-
 export default class Matches extends Component {
+
 
     constructor() {
         super()
@@ -34,32 +34,11 @@ export default class Matches extends Component {
 
     }
 
-    useStyles = makeStyles((theme) =>
-        ({
-            grid: {
-                width: '100%',
-            },
-            paper:
-            {
-                color: theme.palette.text.primary,
-                background: theme.palette.success.light,
-            },
-
-            filter: {
-                width: '100%',
-                display: "flex",
-                background: "#696969",
-                spacing: [0, 4]
-
-
-            },
-
-            dii: {
-                display: 'flex',
-                justifyContent: 'space-between',
-
-            },
-        }));
+    useStyles = makeStyles({
+        divFilter: {
+            backgroundColor: 'rgb(65, 130, 195)',
+        }
+    });
 
 
     componentDidMount() {
@@ -127,12 +106,16 @@ export default class Matches extends Component {
             return (
                 <div>
 
-                    <div>
-                    <Grid container justify='space-between' style={{backgroundColor: "#3f51b5"}} >
-                        <SimpleMenu handelList={this.handelList} season={"Select season"} seasons={this.state.availableSeasons} />
-                        <DateP dates={DataHantering.getAllDates(this.state.items)} dateHandler={this.dateHandler} />
-                    </Grid>
-                    </div >
+                    <div  className = 'bar'>
+
+                        <div className = 'menu'> 
+                            <SimpleMenu handelList={this.handelList} season={"Select season ||"} seasons={this.state.availableSeasons} />
+                        </div>
+                        <div className = 'date'>
+                            <DateP dates={DataHantering.getAllDates(this.state.items)} dateHandler={this.dateHandler} />
+                        </div>
+
+                    </div>
 
                     <Grid item container xs={12}>
                         {this.state.itemsToShow.map((data, index) => (
