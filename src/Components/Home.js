@@ -19,7 +19,7 @@ const Home = () => {
     Axios.get(
       'http://grupp5test.jls-sto1.elastx.net/get/gamebydate/2018-11-09'
     ).then((data) => setLatestMatches(data.data))
-  })
+  }, [])
 
   return (
     <div className="home-container">

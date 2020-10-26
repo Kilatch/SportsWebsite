@@ -4,7 +4,7 @@
 import React, { useState } from 'react'
 import './SportsNavBar.css'
 
-const SportsNavBar = ({ sports ,sportHandler}  ) => {
+const SportsNavBar = ({ sports, sportHandler }) => {
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [sportsPerSlide, setSportsPerSlide] = useState(4)
@@ -40,7 +40,9 @@ const SportsNavBar = ({ sports ,sportHandler}  ) => {
       ></i>
       <ul id="sportsNavLinks" className="sports-nav-links">
         {currentSports.map((sport, index) => (
-          <li key={index} onClick={() => sportHandler(sport)}>{sport} </li>
+          <li key={index} onClick={() => sportHandler(sport)}>
+            {sport}{' '}
+          </li>
         ))}
       </ul>
       <i
