@@ -1,9 +1,13 @@
 /**
- * @author @Kilatch
+ * @author Ali Hussien
  */
 import React, { useState } from 'react'
+<<<<<<< HEAD:src/Components/SportsNavBar.js
 import './SportsNavBar.css'
 import { NavLink } from 'react-router-dom'
+=======
+import '../styles/SportsNavBar.css'
+>>>>>>> footer:src/Components/Sport/SportsNavBar.js
 
 const SportsNavBar = ({ sports, onClick }) => {
   const [loading, setLoading] = useState(false)

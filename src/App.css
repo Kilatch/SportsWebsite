@@ -1,15 +1,19 @@
 /* https://www.color-hex.com/color-palette/35996 */
 
+/**
+ * @author Ali Hussien
+ */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .App{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 body{
@@ -19,97 +23,3 @@ body{
     background-size: cover;
     min-height: 100vh;
 }
-
-a{
-    text-decoration: none;
-}
-
-nav{
-    display: flex;
-    justify-content: space-around;
-    background-color: #201c1c;
-    min-height: 10vh;
-    align-items: center;
-}
-
-.hamburger{
-    font-size: 2rem;
-}
-
-.logo{
-    display: flex;
-    color: #eeeded;
-    align-items: center;
-    font-size: 2rem;
-}
-
-
-.logo:first-child{
-    margin-left: 7px;
-    font-weight: lighter;
-}
-
-.nav-links{
-    width: 50%;
-    display: flex;
-    list-style: none;
-    justify-content: space-around;
-    font-size: 1.5rem;
-
-}
-
-.link a {
-    padding: 10px;
-    color: white;
-    transition: color 0.2s ease-in;
-}
-
-.link a:hover{
-    color: 	#4758d6;
-}
-
-.hamburger-toggle{
-    cursor: pointer;
-    display: none;
-    color: white;
-}
-
-.hamburger-toggle:hover{
-    color: #ea3a3a;
-}
-
-
-@media screen and (max-width:768px){
-    body{
-        overflow-x: hidden;
-    }
-    .hamburger-toggle{
-        display: block;
-    }
-    nav{
-        justify-content: space-between;
-        padding: 0px 50px
-    }
-
-    .link a {
-        color: #201c1c;
-    }
-
-    .nav-links{
-        position: absolute;
-        right: -100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 90vh;
-        width: 100%;
-        top: 10vh;
-        background-color: #eeeded;
-        font-size: 2rem;
-        transition: all 0.5s ease-in;
-    }
-    
-    .active{
-       right: 0;
-    }
-} 
