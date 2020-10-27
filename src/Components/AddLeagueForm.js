@@ -18,6 +18,10 @@ const styles = theme => ({
   saveBtn: {
     color: "#f5eded",
   },
+  rule:{
+    color:"#fafafa",
+    marginLeft : "20%",
+  },
 
 });
 
@@ -143,6 +147,7 @@ class AddLeagueForm extends React.Component {
     const { classes } = this.props;
     return (
       <div>
+      <div>
         <Typography className={classes.txt} >{this.state.savedMessage}</Typography>
         <ValidatorForm
           ref="form"
@@ -196,6 +201,11 @@ class AddLeagueForm extends React.Component {
 
         </ValidatorForm>
 
+      </div>
+      <div className={classes.rule}>
+      valid league Name : first letter should be uppercase ,all letters, add to existing sport only
+      </div>
+    
       </div>
     );
   }
