@@ -38,7 +38,7 @@ function Nav() {
         </li>
 
         <li className="link">
-          <Link to="/about">About</Link>
+          <Link to="/admin">Admin</Link>
         </li>
       </ul>
       <div onClick={handleNavToggle} className="hamburger-toggle">

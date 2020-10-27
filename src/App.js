@@ -4,7 +4,7 @@ import Nav from './Components/Nav'
 import Home from './Components/Home'
 import Sports from './Components/Sports'
 import Matches from './Components/Matches'
-import About from './Components/About'
+import Admin from './Components/Admin'
 import Team from './Components/Team'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/sports" component={Sports} />
           <Route path="/matches" component={Matches} />
-          <Route path="/about" component={About} />
+          <Route path="/admin" component={Admin} />
           <Route path="/team/:id" component={Team} />
         </Switch>
       </div>
