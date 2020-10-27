@@ -1,38 +1,38 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Table from './StandingTable'
 
 export default function LoadTable(props) {
-
   const [state, setState] = useState({
     error: null,
     isLoaded: false,
-    items: []
-  });
+    items: [],
+  })
 
   useEffect(() => {
-    props.getData().then(res => {
-      setState({
-        isLoaded: true,
-        items: res.data
-      })
-    }, error => {
-      setState({
-        isLoaded: true,
-        error: error,
-        items: []
-      })
-    })
+    props.getData().then(
+      (res) => {
+        setState({
+          isLoaded: true,
+          items: res.data,
+        })
+      },
+      (error) => {
+        setState({
+          isLoaded: true,
+          error: error,
+          items: [],
+        })
+      }
+    )
     // eslint-disable-next-line
-  }, [])
+  }, [props])
 
-  const { error, isLoaded, items } = state;
+  const { error, isLoaded, items } = state
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error.message}</div>
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   } else {
-    return (
-      <Table items={items} />
-    );
+    return <Table items={items} />
   }
 }
