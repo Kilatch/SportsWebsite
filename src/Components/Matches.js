@@ -10,7 +10,6 @@ import DateP from './DatePickers'
 
 
 
-
 export default class Matches extends Component {
 
     constructor() {
@@ -20,9 +19,6 @@ export default class Matches extends Component {
             items: [],
             itemsToShow: [],
             availableSeasons: [],
-
-
-
         };
         this.updateComponent = this.updateComponent.bind(this);
         this.sortData = this.sortData.bind(this);
@@ -33,66 +29,45 @@ export default class Matches extends Component {
 
     }
 
-    useStyles = makeStyles((theme) =>
-        ({
-            grid: {
-                width: '100%',
-            },
-            paper:
-            {
-                color: theme.palette.text.primary,
-                background: theme.palette.success.light,
-            },
-
-            filter: {
-                width: '100%',
-                display: "flex",
-                background: "#696969",
-                spacing: [0, 4]
-
-
-            },
-
-            dii: {
-                display: 'flex',
-                justifyContent: 'space-between',
-
-            },
-        }));
-
+    useStyles = makeStyles({
+        divFilter: {
+            backgroundColor: 'rgb(65, 130, 195)',
+        }
+    });
 
     componentDidMount() {
+<<<<<<< HEAD
       
 
+=======
+>>>>>>> origin/dev
         this.updateComponent();
     }
+
     sortData() {
         this.state.items.sort(function (a, b) {
             return b.round.season.startYear - a.round.season.startYear;
         })
     }
-    handelList(id) {
 
+    handelList(id) {
         this.setState({
             itemsToShow: DataHantering.getAvailableMatchinSeason(this.state.items, id),
-
-
         })
-
     }
+
     dateHandler(date) {
         this.setState({
             itemsToShow: DataHantering.getMatchByDate(date, this.state.items)
         })
-
     }
 
     getMatchTwo(id1, id2) {
         this.setState({
             itemsToShow: DataHantering.getMatchesTwo(this.state.items, id1, id2)
         })
-
     }
+
     updateComponent() {
         api.getAllAvailabeSeasons().then(res => {
             this.setState({
@@ -104,8 +79,6 @@ export default class Matches extends Component {
                 itemsToShow: DataHantering.getMatchFromEveryLeague(this.state.items),
                 availableSeasons: DataHantering.getAvailableSeasonIds(this.state.items),
             })
-            //  console.log(this.state.items)
-            //console.log(this.state.availableSeasons)
         }, error => {
             this.setState({
                 error
@@ -115,21 +88,21 @@ export default class Matches extends Component {
 
     render() {
 
-        /*if (this.props.sportId != this.state.sportId) {
-            this.updateComponent()
-        }*/
-
         if (this.state.items.length > 0) {
 
             return (
                 <div>
 
-                    <div>
-                    <Grid container justify='space-between' style={{backgroundColor: "#3f51b5"}} >
-                        <SimpleMenu handelList={this.handelList} season={"Select season"} seasons={this.state.availableSeasons} />
-                        <DateP dates={DataHantering.getAllDates(this.state.items)} dateHandler={this.dateHandler} />
-                    </Grid>
-                    </div >
+                    <div className='bar'>
+
+                        <div className='menu'>
+                            <SimpleMenu handelList={this.handelList} season={"Select season ||"} seasons={this.state.availableSeasons} />
+                        </div>
+                        <div className='date'>
+                            <DateP dates={DataHantering.getAllDates(this.state.items)} dateHandler={this.dateHandler} />
+                        </div>
+
+                    </div>
 
                     <Grid item container xs={12}>
                         {this.state.itemsToShow.map((data, index) => (

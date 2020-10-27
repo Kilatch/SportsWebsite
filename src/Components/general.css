@@ -30,4 +30,16 @@
     margin-bottom: 15px;
 }
 
+.bar{
+background-color:rgb(65, 130, 195);
+    display: flex;
+ }
 
+.menu{
+margin-left: 10%;
+margin-top: 1%;
+}
+
+.date{
+    margin-left: 5%;
+}

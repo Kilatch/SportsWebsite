@@ -22,7 +22,6 @@ const useStyles = makeStyles({
     padding: '0 30px',
     marginLeft: "25px",
     marginTop: "25px",
-    //backgroundColor: "#b69896"
 
 
   },
@@ -33,8 +32,11 @@ const useStyles = makeStyles({
     marginLeft: 30,
     marginTop: 30,
     borderRadius : 25,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+    transitionDuration: '1s',
+    boxShadow: 'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
+    
   },
+  
 
   teamCard: {
     color: '#212121',
@@ -44,6 +46,14 @@ const useStyles = makeStyles({
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 25,
+    animationName : "wave",
+    '&:hover': {
+      color: "#ffff",
+      transition: "0.5s",
+
+
+   },
+    
 
   },
 
@@ -61,7 +71,7 @@ const useStyles = makeStyles({
 
     color: '#e8eaf6',
     marginTop: 50,
-    fontSize: 12,
+    fontSize: 14,
     textAlign: 'center',
     fontStyle: 'italic',
   },

@@ -1,33 +1,7 @@
-/* https://www.color-hex.com/color-palette/35996 */
-
 /**
  * @author Ali Hussien
  */
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.App{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-body{
-    font-family: 'Open Sans', sans-serif;
-<<<<<<< HEAD
-   /* background: linear-gradient(#ea3a3a, #4758d6);*/
-=======
->>>>>>> origin/dev
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100vh;
-}
-<<<<<<< HEAD
-
+ 
 a{
     text-decoration: none;
 }
@@ -58,12 +32,11 @@ nav{
 }
 
 .nav-links{
-  width: 50%;
+    width: 50%;
     display: flex;
     list-style: none;
     justify-content: space-around;
     font-size: 1.5rem;
-
 }
 
 .link a {
@@ -72,9 +45,12 @@ nav{
     transition: color 0.2s ease-in;
 }
 
+
+
 .link a:hover{
     color: 	#4758d6;
 }
+
 
 .hamburger-toggle{
     cursor: pointer;
@@ -83,14 +59,13 @@ nav{
 }
 
 .hamburger-toggle:hover{
-    color: #ea3a3a;
+    color: #4758d6;
 }
 
 
-@media only screen and (orientation: portrait){
+@media screen and (max-width:768px){
     body{
-       overflow-x: hidden;
-     
+        overflow-x: hidden;
     }
     .hamburger-toggle{
         display: block;
@@ -104,18 +79,28 @@ nav{
         color: #201c1c;
     }
 
+    .logo-text{
+        display: none;
+    }
+
+    .icon:hover{
+        /* color: #4758d6; */
+        transform: scale(1.1);
+        transition: all 0.2s ease-in;
+    }
+
     .nav-links{
         position: absolute;
-        overflow-y: scroll;
-        right: 0%;
+        right: -100%;
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
         align-items: center;
-        height: 10%;
-         width: 25%;
-        top: 0%;
+        height: 100%;
+        width: 100%;
+        top: 10vh;
         background-color: #eeeded;
-        font-size: 0.8rem;
+        font-size: 2rem;
         transition: all 0.5s ease-in;
     }
     
@@ -123,5 +108,3 @@ nav{
        right: 0;
     }
 } 
-=======
->>>>>>> origin/dev

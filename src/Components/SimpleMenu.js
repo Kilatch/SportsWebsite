@@ -2,8 +2,22 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    b: {
+
+        color : ' #ffff',
+        '&:hover': {
+            backgroundColor: "#b0bec5",
+      
+         },
+    },
+  
+  });
 
 export default function SimpleMenu({ season, handelList, seasons }) {
+    const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
 
@@ -18,7 +32,7 @@ export default function SimpleMenu({ season, handelList, seasons }) {
 
     return (
         <div>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            <Button className ={classes.b} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 {season}
             </Button>
             <Menu
@@ -27,6 +41,7 @@ export default function SimpleMenu({ season, handelList, seasons }) {
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
+                
             >
                 {seasons.map((data, index) => (
                     <div key={index}>
