@@ -12,8 +12,7 @@ table {
 
 td, th {
   text-align: center;
-  padding: 5px;
-  padding-right: 5px;
+  padding: 10px 5px 10px 5px;
   
 }
 
@@ -23,6 +22,11 @@ tr {
 
 tr:last-child {
   border-bottom: none;
+}
+
+.teamName {
+  text-align: left;
+  padding-left: 25px;
 }
 
 @media (orientation: portrait) {

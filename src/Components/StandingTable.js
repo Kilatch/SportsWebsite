@@ -8,7 +8,7 @@ export default function StandingTable(props) {
       <table>
         <thead>
           <tr>
-            <th>Team</th>
+            <th className="teamName">Team</th>
             <th>MP</th>
             <th>W</th>
             <th>D</th>
@@ -22,7 +22,7 @@ export default function StandingTable(props) {
         <tbody>
           {props.items.map(row => (
             <tr key={row.teamId}>
-              <td>{row.teamName}</td>
+              <td className="teamName">{row.teamName}</td>
               <td>{row.gamesPlayed}</td>
               <td>{row.wins}</td>
               <td>{row.draws}</td>
