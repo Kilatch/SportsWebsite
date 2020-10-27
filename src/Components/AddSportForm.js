@@ -18,6 +18,10 @@ const styles = theme => ({
   saveBtn:{
     color:"#f5eded",
   },
+  rule:{
+    color:"#fafafa",
+    marginLeft : "20%",
+  },
 
 });
 
@@ -118,6 +122,7 @@ class AddSportForm extends React.Component {
     const { classes } = this.props;
     return (
       <div>
+      <div>
         <Typography className={classes.txt} >{this.state.savedSportNameAndMessage}</Typography>
       <ValidatorForm
         ref="form"
@@ -131,6 +136,7 @@ class AddSportForm extends React.Component {
         p={1}
         m={1}   
     >
+      
           <Box p={1}  >
           <TextValidator
             label="Sport Name"
@@ -160,6 +166,13 @@ class AddSportForm extends React.Component {
       </ValidatorForm>
         
       </div>
+      <Box p={1}  >
+          
+      <div className={classes.rule}>
+        valid sport name : first letter should be uppercase ,all letters, only new sport
+      </div>
+  </Box>
+  </div>
     );
   }
 }
