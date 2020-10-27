@@ -9,7 +9,7 @@ import Selector from './Selector'
 const LatestMatches = ({ latestmatches }) => {
   const [filterdMatches, setFilteredMatches] = useState([])
   const [allLeagues, setAllLeagues] = useState([])
-  const [selectedSportLeague, setSelectedSportLeague] = useState(48)
+  const [selectedSportLeague, setSelectedSportLeague] = useState()
   const [currentMatch, setCurrentMatch] = useState({
     homeTeam: '',
     awayTeam: '',
@@ -28,14 +28,6 @@ const LatestMatches = ({ latestmatches }) => {
   const paginateClicked = (match) => {
     setProgressPercent(match)
     setCurrentMatch(match)
-  }
-
-  const animateMatches = () => {
-    setInterval(() => {
-      for (const filteredmatch of filterdMatches) {
-        setCurrentMatch(filteredmatch)
-      }
-    }, 1000)
   }
 
   useEffect(() => {
@@ -109,15 +101,16 @@ const LatestMatches = ({ latestmatches }) => {
         <Match data={currentMatch} />
       </div>
       <div className="latest-games-footer">
-        {filterdMatches.map((match, index) => (
-          <li
-            key={index}
-            onClick={() => {
-              paginateClicked(match)
-            }}
-            className={`paginate`}
-          ></li>
-        ))}
+        {filterdMatches.length > 1 &&
+          filterdMatches.map((match, index) => (
+            <li
+              key={index}
+              onClick={() => {
+                paginateClicked(match)
+              }}
+              className={`paginate`}
+            ></li>
+          ))}
       </div>
     </div>
   )
