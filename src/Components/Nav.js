@@ -4,6 +4,7 @@
 
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import './styles/Nav.css'
 
 function Nav() {
   const [navToggle, setNavToggle] = useState(false)

@@ -3,7 +3,7 @@
  */
 
 import React, { useEffect, useState } from 'react'
-import './LatestMatches.css'
+import '../styles/LatestMatches.css'
 import Selector from './Selector'
 
 const LatestMatches = ({ latestmatches }) => {

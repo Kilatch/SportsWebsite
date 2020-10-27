@@ -3,8 +3,9 @@
  */
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import './Home.css'
+import '../styles/Home.css'
 import LatestMatches from './LatestMatches'
+import Footer from './Footer'
 
 const Home = () => {
   const [latestMatches, setLatestMatches] = useState([])
@@ -38,6 +39,7 @@ const Home = () => {
       <div className="latest-matches">
         <LatestMatches latestmatches={latestMatches} />
       </div>
+      <Footer />
     </div>
   )
 }

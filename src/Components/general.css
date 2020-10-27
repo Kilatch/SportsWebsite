@@ -1,0 +1,33 @@
+
+.match-list{
+    background-color: black;
+    align-self: center;
+    display: flex;
+    position: relative;
+}
+.card-match{
+    display: flex;
+    text-align: center;
+    background-color:black;
+    position: relative;
+}
+
+
+.more-match{
+    display: block;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: blue;
+    width: 400px;
+    height: 70px;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: blue;
+    background-size: 100% 100%;
+    box-shadow: 0 0 0 7px var(--light) inset;
+    margin-bottom: 15px;
+}
+
+

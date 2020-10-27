@@ -2,20 +2,19 @@
  * @author Ali Hussien
  */
 import React, { useState } from 'react'
-import './SportsNavBar.css'
+import '../styles/SportsNavBar.css'
 
-const SportsNavBar = ({ sports, sportHandler }) => {
+const SportsNavBar = ({ sports, onClick }) => {
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [sportsPerSlide, setSportsPerSlide] = useState(4)
-
   const indexOfLastSport = currentPage * sportsPerSlide
   const indexOfFirstSport = indexOfLastSport - sportsPerSlide
   const currentSports = sports.slice(indexOfFirstSport, indexOfLastSport)
 
   const nextSports = () => {
     // (currentPage + 1) % sportsPerSlide
-    setCurrentPage(currentPage + 1)
+    if (sports.length >= sportsPerSlide) setCurrentPage(currentPage + 1)
   }
   const previousSports = () => {
     setCurrentPage(currentPage - 1)
@@ -36,12 +35,17 @@ const SportsNavBar = ({ sports, sportHandler }) => {
         onClick={() => {
           animateSportsNavLinks(previousSports)
         }}
-        className={`fas fa-minus add-more ${currentPage <= 1 && 'hide'}`}
+        className={`fas fa-arrow-left add-more ${currentPage <= 1 && 'hide'}`}
       ></i>
       <ul id="sportsNavLinks" className="sports-nav-links">
         {currentSports.map((sport, index) => (
-          <li key={index} onClick={() => sportHandler(sport)}>
-            {sport}{' '}
+          <li
+            key={index}
+            onClick={() => {
+              onClick(sport.id)
+            }}
+          >
+            {sport.name}
           </li>
         ))}
       </ul>
@@ -50,7 +54,7 @@ const SportsNavBar = ({ sports, sportHandler }) => {
         onClick={() => {
           animateSportsNavLinks(nextSports)
         }}
-        className={`fas fa-plus add-more ${
+        className={`fas fa-arrow-right add-more ${
           currentPage >= Math.round(sports.length / sportsPerSlide) + 1 &&
           'hide'
         }`}

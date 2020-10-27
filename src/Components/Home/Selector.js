@@ -2,7 +2,7 @@
  * @author Ali Hussien
  */
 import React, { useState } from 'react'
-import './Selector.css'
+import '../styles/Selector.css'
 
 const TreeView = ({
   data,
