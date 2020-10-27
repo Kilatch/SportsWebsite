@@ -5,6 +5,7 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/LatestMatches.css'
 import Selector from './Selector'
+import { Link } from 'react-router-dom'
 
 const LatestMatches = ({ latestmatches }) => {
   const [filterdMatches, setFilteredMatches] = useState([])
@@ -38,7 +39,9 @@ const LatestMatches = ({ latestmatches }) => {
     filteredMatchesById.map((match) => {
       temp.push({
         awayTeam: match.awayTeam.name,
+        awayID: match.awayTeam.id,
         homeTeam: match.homeTeam.name,
+        homeID: match.homeTeam.id,
         result: [match.result.awayScore, match.result.homeScore],
         round: match.round.roundNr,
         numberOfRound: match.round.season.numberOfRound,
@@ -117,13 +120,17 @@ const LatestMatches = ({ latestmatches }) => {
 }
 
 export default LatestMatches
-const Match = ({ data: { homeTeam, awayTeam, result } }) => {
+const Match = ({ data: { homeID, awayID, homeTeam, awayTeam, result } }) => {
   const teamClicked = () => {}
 
   return (
     <div className="match-container">
       <div className="teams">
-        <div className="team">{homeTeam}</div>
+        <div className="team">
+          <Link className="team" to={`/team/${homeID}`}>
+            {homeTeam}
+          </Link>
+        </div>
         <div className="score-container">
           <div className={`score ${result[1] > result[0] && 'won'}`}>
             {result[1]}
@@ -133,7 +140,11 @@ const Match = ({ data: { homeTeam, awayTeam, result } }) => {
             {result[0]}
           </div>
         </div>
-        <div className="team">{awayTeam}</div>
+        <div className="team">
+          <Link className="team" to={`/team/${homeID}`}>
+            {awayTeam}
+          </Link>
+        </div>
       </div>
     </div>
   )

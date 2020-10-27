@@ -1,0 +1,17 @@
+footer{
+    width: 100%;
+    background-color: #221d1d;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: lightgrey;
+}
+
+footer:hover > p{
+    color: white;
+}
+
+@media screen and (max-width: 978px) {
+    footer{
+        padding: 1.5rem;
+    }
+}
