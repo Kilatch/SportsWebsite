@@ -20,6 +20,8 @@ const Sports = () => {
       setSports(data.data)
     })
   }, [])
+
+  
   return (
     <div>
       <SportsNavBar sports={sports} onClick={sportClicked} />

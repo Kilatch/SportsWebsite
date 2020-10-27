@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 import styles from './styles/Table.css'
 
 export default function StandingTable(props) {
@@ -22,7 +22,11 @@ export default function StandingTable(props) {
         <tbody>
           {props.items.map(row => (
             <tr key={row.teamId}>
-              <td className="teamName">{row.teamName}</td>
+              <td className="teamName">
+                <Link to={'/team/'+row.teamId} > 
+                {row.teamName}
+                </Link>
+              </td>
               <td>{row.gamesPlayed}</td>
               <td>{row.wins}</td>
               <td>{row.draws}</td>
