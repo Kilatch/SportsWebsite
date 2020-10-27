@@ -47,13 +47,11 @@ function Nav() {
         </li>
 
         <li className="link">
-<<<<<<< HEAD
+
           <Link to="/admin">Admin</Link>
-=======
-          <Link onClick={setHandleFalse} to="/about">
-            About
-          </Link>
->>>>>>> origin/dev
+
+        
+
         </li>
       </ul>
       <div onClick={handleNavToggle} className="hamburger-toggle">

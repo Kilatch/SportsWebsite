@@ -18,15 +18,13 @@
 
 body{
     font-family: 'Open Sans', sans-serif;
-<<<<<<< HEAD
-   /* background: linear-gradient(#ea3a3a, #4758d6);*/
-=======
->>>>>>> origin/dev
+
+
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
 }
-<<<<<<< HEAD
+
 
 a{
     text-decoration: none;
@@ -123,5 +121,4 @@ nav{
        right: 0;
     }
 } 
-=======
->>>>>>> origin/dev
+

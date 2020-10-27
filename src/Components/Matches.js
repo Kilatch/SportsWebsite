@@ -36,11 +36,9 @@ export default class Matches extends Component {
     });
 
     componentDidMount() {
-<<<<<<< HEAD
+
       
 
-=======
->>>>>>> origin/dev
         this.updateComponent();
     }
 
