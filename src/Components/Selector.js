@@ -1,3 +1,6 @@
+/**
+ * @author Ali Hussien
+ */
 import React, { useState } from 'react'
 import './Selector.css'
 
@@ -72,6 +75,7 @@ export default function Selector({ allLeagues, labelClickListener }) {
 
   return (
     <div className="selector">
+      <div className="selector-text">Select sport & league</div>
       <TreeView
         data={allLeagues}
         rootItemsOpened={openedItems}

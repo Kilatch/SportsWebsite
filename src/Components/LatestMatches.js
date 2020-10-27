@@ -19,7 +19,14 @@ const LatestMatches = ({ latestmatches }) => {
     setSelectedSportLeague(e)
   }
 
+  const setProgressPercent = (match) => {
+    document.getElementById('round-progress-bar').style.width = `${
+      (match.round / match.numberOfRound) * 100
+    }%`
+  }
+
   const paginateClicked = (match) => {
+    setProgressPercent(match)
     setCurrentMatch(match)
   }
 
@@ -50,6 +57,7 @@ const LatestMatches = ({ latestmatches }) => {
     setFilteredMatches(temp)
     if (temp[0]) {
       setCurrentMatch(temp[0])
+      setProgressPercent(temp[0])
     }
     let sportLeagues = []
     let sports = []
@@ -83,13 +91,15 @@ const LatestMatches = ({ latestmatches }) => {
     }
     setAllLeagues(sportLeagues)
   }, [latestmatches, selectedSportLeague])
-
   return (
     <div className="latest-games-container">
       <div className="latest-games-header">
         <div className="latest-games-header-info">
           <p className="league-name">{currentMatch.leagueName}</p>
           <p className="league-date">11 Feburary 2020</p>
+        </div>
+        <div className="round-progress">
+          <div id="round-progress-bar"></div>
         </div>
         <div className="latest-games-selectors">
           <Selector allLeagues={allLeagues} labelClickListener={handleChange} />

@@ -41,7 +41,7 @@
 
 .selector-item-scroll {
   border-radius: 10px;
-  padding: 5px;
+  padding: 3px;
   overflow: hidden;
   overflow-y: scroll;
   width: 100%;
@@ -55,7 +55,17 @@
   padding: 0;
 }
 
+.selector-text{
+  color: grey;
+  font-weight: lighter;
+  margin-left: 10px;
+}
+
 @media screen and (max-width: 978px) {
+
+  .selector-text{
+    text-align: center;
+  }
   .selector{
     padding: 0;
   }
