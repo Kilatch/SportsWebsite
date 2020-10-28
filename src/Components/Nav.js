@@ -22,9 +22,7 @@ function Nav() {
     <nav>
       <Link className="logo" to="/">
         <i className="fas fa-futbol link icon">
-          <Link className="logo-text" to="/">
-            Ball
-          </Link>
+          <p className="logo-text">Ball</p>
         </i>
       </Link>
       <ul className={`nav-links ${navToggle && 'active'}`}>
