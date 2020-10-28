@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import api from '../api'
 import '../styles/SportLeagueList.css'
 import LoadTable from '../LoadTable'
+import { Link } from 'react-router-dom'
 
 export default class SeasonsForLeague extends Component {
   constructor(props) {
@@ -53,7 +54,9 @@ export default class SeasonsForLeague extends Component {
       let season = this.state.items[0]
       return (
         <div>
-          <h4 className="season-year">{season.startYear}</h4>
+          <Link to={"/season/" + season.id} >
+            <h4 className="season-year"> {season.startYear}</h4>
+          </Link>
           <LoadTable getData={() => api.getTableBySeasonId(season.id)} />
         </div>
       )
