@@ -27,6 +27,7 @@ export default function SimpleMenu({ season, handelList, seasons }) {
 
     const handleClose = (event) => {
         setAnchorEl(null);
+        if (event.currentTarget.value >0)
         handelList(event.currentTarget.value)
     };
 
@@ -35,6 +36,7 @@ export default function SimpleMenu({ season, handelList, seasons }) {
             <Button className ={classes.b} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 {season}
             </Button>
+
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
@@ -45,7 +47,6 @@ export default function SimpleMenu({ season, handelList, seasons }) {
             >
                 {seasons.map((data, index) => (
                     <div key={index}>
-
                         <MenuItem onClick={handleClose} value={data.id}>{data.league.name + "  " + data.startYear}</MenuItem>
                     </div>
                 ))}

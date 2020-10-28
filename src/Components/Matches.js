@@ -4,7 +4,7 @@ import DataHantering from './DataHantering'
 import CardObj from './CardObj'
 import './general.css'
 import { makeStyles } from '@material-ui/core/styles'
-import { Grid } from '@material-ui/core'
+import { Button, Grid } from '@material-ui/core'
 import SimpleMenu from './SimpleMenu'
 import DateP from './DatePickers'
 
@@ -85,22 +85,16 @@ export default class Matches extends Component {
   }
 
   render() {
+
     if (this.state.items.length > 0) {
       return (
         <div>
           <div className="bar">
             <div className="menu">
-              <SimpleMenu
-                handelList={this.handelList}
-                season={'Select season ||'}
-                seasons={this.state.availableSeasons}
-              />
+              <SimpleMenu handelList={this.handelList} season={'Select season ||'} seasons={this.state.availableSeasons} />
             </div>
             <div className="date">
-              <DateP
-                dates={DataHantering.getAllDates(this.state.items)}
-                dateHandler={this.dateHandler}
-              />
+              <DateP dates={DataHantering.getAllDates(this.state.items)} dateHandler={this.dateHandler} />
             </div>
           </div>
 
@@ -113,6 +107,8 @@ export default class Matches extends Component {
           </Grid>
         </div>
       )
-    } else return null
+    } else return (
+      <Button>Hej</Button>
+    )
   }
 }

@@ -45,10 +45,10 @@ export default function DateP({ dates, dateHandler }) {
 
   function disableWeekends(date) {
     let d = formateDate(date)
-
-
     return !dates.includes(d)
   }
+
+  
   const handleEffectiveDateChange = (date) => {
     if (formateDate(date) != dates[dates.length] && !state.started) {
       dateHandler(formateDate(date));
