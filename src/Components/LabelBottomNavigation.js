@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 
 const useStyles = makeStyles({
@@ -18,18 +20,20 @@ const useStyles = makeStyles({
   },
 });
 
-export default function LabelBottomNavigation({funk}) {
+export default function LabelBottomNavigation({updateSeason}) {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
 
   const handleChange = (event, newValue) => {
-  //  setValue(newValue);
-    console.log(newValue)
+    setValue(newValue);
+    updateSeason(newValue)
+
   };
 
   return (
-    <BottomNavigation value={value} onChange={(event,newValue)=>funk(event,newValue)} className={classes.root}>
-      <BottomNavigationAction  label="Old Seasons" value="recents" icon={<RestoreIcon />} />
+    <BottomNavigation value={value} onChange={(event,newValue)=>handleChange(event,newValue)} className={classes.root}>
+      <BottomNavigationAction  label="backward" value={0} icon={<ArrowBackIosIcon/>} />
+      <BottomNavigationAction  label="forward" value={1} icon={<ArrowForwardIosIcon/>} />
      
     </BottomNavigation>
   );
