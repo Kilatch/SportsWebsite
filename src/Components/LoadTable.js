@@ -15,23 +15,21 @@ export default class LoadTable extends React.Component {
         items: [],
         seasonId: this.props.seasonId,
       }
-    this.updateComponent = this.updateComponent.bind(this)
   }
 
   componentDidMount() {
-    if (this.props.seasonId != 0) {
-      this.updateComponent()
-    }
+    this.updateComponent()
   }
 
-
-  updateComponent() {
-    if (!this.state.isLoaded) {
+  updateComponent = () => {
+    
+    if (!this.state.isLoaded || this.props.seasonId != this.state.seasonId) {
       api.getTableBySeasonId(this.props.seasonId).then(
         (res) => {
           let tmp = {...this.state}
           tmp.isLoaded = true
           tmp.items = res.data
+          tmp.seasonId = this.props.seasonId
           this.setState(tmp)
           sessionStorage.setItem(this.cachKey, JSON.stringify(tmp))
         },
@@ -65,6 +63,5 @@ export default class LoadTable extends React.Component {
 
       )
     } else return null
-
   }
 }
