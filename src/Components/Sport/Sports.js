@@ -1,5 +1,5 @@
 /**
- * @author Ali
+ * @author Ali Hussien
  */
 
 import React, { useState, useEffect } from 'react'
@@ -20,6 +20,7 @@ const Sports = () => {
       setSports(data.data)
     })
   }, [])
+
   return (
     <div>
       <SportsNavBar sports={sports} onClick={sportClicked} />

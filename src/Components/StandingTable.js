@@ -5,7 +5,8 @@ import styles from './styles/Table.css'
 export default function StandingTable(props) {
   
   const [state, setState] = useState({
-    items: props.items
+    items: props.items,
+  
   });
 
   let sortByName = () => {
@@ -53,7 +54,7 @@ export default function StandingTable(props) {
       items: table
     })
   }
-  
+ 
 
   if (state.items != null && state.items.length > 0) {
     return (

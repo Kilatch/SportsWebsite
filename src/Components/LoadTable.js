@@ -6,40 +6,43 @@ export default class LoadTable extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      error: null,
-      isLoaded: false,
-      items: [],
-      seasonId: this.props.seasonId,
-    }
-    this.updateComponent = this.updateComponent.bind(this)
+
+    this.state =
+      JSON.parse(sessionStorage.getItem(this.cachKey)) ||
+      {
+        error: null,
+        isLoaded: false,
+        items: [],
+        seasonId: this.props.seasonId,
+      }
   }
 
   componentDidMount() {
-    if(this.props.seasonId!=0){
-      this.updateComponent()
-    }
+    this.updateComponent()
   }
 
+  updateComponent = () => {
+    
+    if (!this.state.isLoaded || this.props.seasonId != this.state.seasonId) {
+      api.getTableBySeasonId(this.props.seasonId).then(
+        (res) => {
+          let tmp = {...this.state}
+          tmp.isLoaded = true
+          tmp.items = res.data
+          tmp.seasonId = this.props.seasonId
+          this.setState(tmp)
+          sessionStorage.setItem(this.cachKey, JSON.stringify(tmp))
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error: error,
+            items: [],
+          })
+        }
+      )
+    }
 
-  updateComponent() {
-    api.getTableBySeasonId(this.props.seasonId).then(
-      (res) => {
-        this.setState({
-          isLoaded: true,
-          items: res.data,
-          seasonId:this.props.seasonId
-        })
-        console.log(this.state.items)
-      },
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error: error,
-          items: [],
-        })
-      }
-    )
   }
    render(){
 
@@ -61,12 +64,6 @@ export default class LoadTable extends React.Component {
         
       )
     } else return null
-    
-
-    
-   
-   
- 
 
   }
 }
