@@ -38,6 +38,11 @@
   text-transform: uppercase;
 }
 
+.league-name:hover{
+  transform: skewX(5deg);
+  color: #4758d6;
+}
+
 .latest-games-header-info {
   color: #4758d6;
   display: flex;
@@ -189,6 +194,7 @@
     font-size: 1.3rem;
     /* padding-right: 20px; */
   }
+  
 
   .latest-games-body{
     margin: 10px;
