@@ -19,18 +19,25 @@ nav{
 }
 
 .logo{
-    display: flex;
-    color: #eeeded;
-    align-items: center;
     font-size: 2rem;
+    color: white;
 }
 
-
-.logo:first-child{
-    margin-left: 7px;
-    font-weight: lighter;
+.icon{
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease-in;
 }
 
+.logo-text{
+    font-weight: 10;
+    margin-left: 5px;
+}
+
+.icon:hover > p{
+    color: #4758d6;
+    transition: all 0.3s ease-out;
+}
 .nav-links{
     width: 50%;
     display: flex;
@@ -44,8 +51,6 @@ nav{
     color: white;
     transition: color 0.2s ease-in;
 }
-
-
 
 .link a:hover{
     color: 	#4758d6;
