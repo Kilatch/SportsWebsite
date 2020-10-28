@@ -90,7 +90,14 @@ const LatestMatches = ({ latestmatches }) => {
     <div className="latest-games-container">
       <div className="latest-games-header">
         <div className="latest-games-header-info">
-          <p className="league-name">{currentMatch.leagueName}</p>
+          <div className="league-name">
+            <Link
+              className="league-name"
+              to={`/season/${currentMatch.leagueId}`}
+            >
+              {currentMatch.leagueName}
+            </Link>
+          </div>
           <p className="league-date">11 Feburary 2020</p>
         </div>
         <div className="round-progress">
@@ -141,7 +148,7 @@ const Match = ({ data: { homeID, awayID, homeTeam, awayTeam, result } }) => {
           </div>
         </div>
         <div className="team">
-          <Link className="team" to={`/team/${homeID}`}>
+          <Link className="team" to={`/team/${awayID}`}>
             {awayTeam}
           </Link>
         </div>
