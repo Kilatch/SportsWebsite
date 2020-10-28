@@ -58,11 +58,10 @@ export default class SeasonsForLeague extends Component {
       return (
         <div>
           <h3 className="league-list"> {season.league.name} </h3>
-          <LoadTable seasonId={season.id} />
           <Link to={"/season/" + season.id} >
             <h4 className="season-year"> {season.startYear}</h4>
           </Link>
-          <LoadTable getData={() => api.getTableBySeasonId(season.id)} />
+          <LoadTable seasonId={season.id} />
         </div>
       )
     } else return null
