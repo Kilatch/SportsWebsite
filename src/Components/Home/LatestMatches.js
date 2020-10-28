@@ -8,7 +8,7 @@ import Selector from './Selector'
 import { Link } from 'react-router-dom'
 
 const LatestMatches = ({ latestmatches }) => {
-  const [filterdMatches, setFilteredMatches] = useState([])
+  const [filteredMatches, setFilteredMatches] = useState([])
   const [allLeagues, setAllLeagues] = useState([])
   const [selectedSportLeague, setSelectedSportLeague] = useState()
   const [currentMatch, setCurrentMatch] = useState({
@@ -26,12 +26,7 @@ const LatestMatches = ({ latestmatches }) => {
     }%`
   }
 
-  const paginateClicked = (match) => {
-    setProgressPercent(match)
-    setCurrentMatch(match)
-  }
-
-  useEffect(() => {
+  const filterMatches = () => {
     let filteredMatchesById = latestmatches.filter(
       (match) => match.round.season.league.id === selectedSportLeague
     )
@@ -50,10 +45,9 @@ const LatestMatches = ({ latestmatches }) => {
       })
     })
     setFilteredMatches(temp)
-    if (temp[0]) {
-      setCurrentMatch(temp[0])
-      setProgressPercent(temp[0])
-    }
+  }
+
+  const addAllLeagues = () => {
     let sportLeagues = []
     let sports = []
     let leagues = []
@@ -85,7 +79,36 @@ const LatestMatches = ({ latestmatches }) => {
       }
     }
     setAllLeagues(sportLeagues)
-  }, [latestmatches, selectedSportLeague])
+  }
+
+  const paginateClicked = (match) => {
+    setProgressPercent(match)
+    setCurrentMatch(match)
+  }
+
+  useEffect(() => {
+    if (allLeagues.length > 0) {
+      setSelectedSportLeague(allLeagues[0].children[0].leagueId)
+    }
+  }, [allLeagues])
+
+  useEffect(() => {
+    if (selectedSportLeague) {
+      filterMatches()
+    }
+  }, [selectedSportLeague])
+
+  useEffect(() => {
+    if (filteredMatches.length > 0) {
+      setCurrentMatch(filteredMatches[0])
+      setProgressPercent(filteredMatches[0])
+    }
+  }, [filteredMatches])
+
+  useEffect(() => {
+    addAllLeagues()
+  }, [latestmatches])
+
   return (
     <div className="latest-games-container">
       <div className="latest-games-header">
@@ -111,8 +134,8 @@ const LatestMatches = ({ latestmatches }) => {
         <Match data={currentMatch} />
       </div>
       <div className="latest-games-footer">
-        {filterdMatches.length > 1 &&
-          filterdMatches.map((match, index) => (
+        {filteredMatches.length > 1 &&
+          filteredMatches.map((match, index) => (
             <li
               key={index}
               onClick={() => {
