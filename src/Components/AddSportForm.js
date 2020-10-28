@@ -37,11 +37,13 @@ class AddSportForm extends React.Component {
     this.state = {
       formData: {
         sportName: '',
+      
       },
       
       submitted: false,
       savedSportNameAndMessage:'',
       sportList:props.data,
+      felMedelande:'required'
      
     }
     this.handleDialog = this.handleDialog.bind(this);
@@ -80,10 +82,19 @@ class AddSportForm extends React.Component {
     ValidatorForm.addValidationRule('isText', (value) => {
       var letters = /^[A-Za-z]+$/;
       var character = value.charAt(0);
-      if (value.match(letters) && character == character.toUpperCase()) {
-        return true;
+      if (value.length==0) {
+        this.setState({felMedelande:'the field is reqiured'})
+        return false;
       }
-      return false;
+      if (!value.match(letters) ) {
+        this.setState({felMedelande:'only letters are valid'})
+        return false;
+      }
+      if(character != character.toUpperCase()){
+        this.setState({felMedelande:'First letter should be upperCase'})
+        return false;
+      }
+      return true
     });
 
 
@@ -96,14 +107,9 @@ class AddSportForm extends React.Component {
   }
 
   handleSubmit = () => {
-    //console.log(this.state.formData)
-    //console.log(this.state.sportList.length) 
-    //console.log(Object.keys(this.state.sportList).length);
     let notExistsSimilarName=true
     for(let i=0;i<this.state.sportList.length;i++){
      let sp=this.state.sportList[i];
-    // console.log('sp'+sp.name)
-     //console.log('form'+this.state.formData.sportName)
       if(sp.name==this.state.formData.sportName){
         notExistsSimilarName=false
         this.setState({ 
@@ -150,7 +156,7 @@ class AddSportForm extends React.Component {
             value={formData.sportName}
             variant="outlined"
             validators={['required', 'isText']}
-            errorMessages={['this field is required', 'SportName is Not valid']}
+            errorMessages={['this field is required', this.state.felMedelande]}
           />
         </Box>
           <Box p={1} >
@@ -175,9 +181,6 @@ class AddSportForm extends React.Component {
       </div>
       <Box p={1}  >
           
-      <div className={classes.rule}>
-        valid sport name : first letter should be uppercase ,all letters, only new sport
-      </div>
   </Box>
   </div>
     );

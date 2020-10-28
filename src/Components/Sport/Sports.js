@@ -9,7 +9,7 @@ import SportLeagueList from './SportLeagueList'
 
 const Sports = () => {
   const [sports, setSports] = useState([])
-  const [sportID, setSportID] = useState(0)
+  const [sportID, setSportID] = useState(2)
 
   const sportClicked = (id) => {
     setSportID(id)

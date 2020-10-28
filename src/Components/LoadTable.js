@@ -3,10 +3,10 @@ import Table from './StandingTable'
 import api from './api'
 
 export default class LoadTable extends React.Component {
-  cachKey = "loadTable:" + this.props.seasonId
 
   constructor(props) {
     super(props)
+
     this.state =
       JSON.parse(sessionStorage.getItem(this.cachKey)) ||
       {
@@ -42,26 +42,28 @@ export default class LoadTable extends React.Component {
         }
       )
     }
-  }
-  render() {
 
-    if (this.props.seasonId != this.state.seasonId) {
+  }
+   render(){
+
+    if (this.props.seasonId!=this.state.seasonId) {
       this.updateComponent()
     }
-    if (this.props.seasonId == this.state.seasonId) {
+    if (this.props.seasonId==this.state.seasonId) {
       return (
 
-
+   
         <div>
           {
-            (this.state.error && <div>Error: {this.state.error.message}</div>)
-            || (!this.state.isLoaded && <div>Loading...</div>)
-            || (this.state.isLoaded && <Table items={this.state.items} />)
-          }
+          (this.state.error && <div>Error: {this.state.error.message}</div>)
+          || (!this.state.isLoaded && <div>Loading...</div>)
+          || (this.state.isLoaded && <Table items={this.state.items} />)
+        }
         </div>
-
-
+        
+        
       )
     } else return null
+
   }
 }

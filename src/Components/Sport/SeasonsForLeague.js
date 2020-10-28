@@ -6,6 +6,8 @@ import api from '../api'
 import '../styles/SportLeagueList.css'
 import LoadTable from '../LoadTable'
 import { Link } from 'react-router-dom'
+import { Button } from '@material-ui/core'
+import LoadBottomNav from '../LabelBottomNavigation'
 
 export default class SeasonsForLeague extends Component {
   constructor(props) {
@@ -14,9 +16,12 @@ export default class SeasonsForLeague extends Component {
       leagueId: props.leagueId,
       error: null,
       items: [],
+      seasonToShow:null,
+      index:0
     }
     this.updateComponent = this.updateComponent.bind(this)
     this.sortData = this.sortData.bind(this)
+    this.updateSeason = this.updateSeason.bind(this)
   }
   sortData() {
     this.state.items.sort(function (a, b) {
@@ -26,6 +31,20 @@ export default class SeasonsForLeague extends Component {
   componentDidMount() {
     this.updateComponent()
   }
+  updateSeason(value){
+    let len=this.state.items.length
+    if((value==0)&&this.state.index<len){
+      this.setState({index:this.state.index+1,
+        seasonToShow:this.state.items[this.state.index+1]
+      })
+    }
+    else  if((value==1)&&this.state.index>0){
+      this.setState({index:this.state.index-1,
+        seasonToShow:this.state.items[this.state.index-1]
+      })
+    }
+    console.log(value)
+  }
 
   updateComponent() {
     api.getSeasonsByLeague(this.props.leagueId).then(
@@ -34,6 +53,10 @@ export default class SeasonsForLeague extends Component {
           items: res.data,
           leagueId: this.props.leagueId,
         })
+<<<<<<< HEAD
+  
+=======
+>>>>>>> origin/dev
 
         console.log(this.state.items)
       },
@@ -51,6 +74,27 @@ export default class SeasonsForLeague extends Component {
     }
     if (this.state.items.length > 0) {
       this.sortData()
+<<<<<<< HEAD
+      let season ;
+      if(this.state.seasonToShow==null)season = this.state.items[0];
+      else{season=this.state.seasonToShow}
+
+      
+        return (
+         
+          <div>
+           
+            <h3 className="league-list"> {season.league.name} </h3>
+            <Link to={'/season/' + season.id}>
+              <h4 className="season-year"> {season.startYear}</h4>
+            </Link>
+           
+            <LoadTable seasonId={season.id} />
+            <LoadBottomNav updateSeason={this.updateSeason} />
+          </div>
+        )
+      
+=======
       let season = this.state.items[0]
       return (
         <div>
@@ -61,6 +105,7 @@ export default class SeasonsForLeague extends Component {
           <LoadTable seasonId={season.id} />
         </div>
       )
+>>>>>>> origin/dev
     } else return null
   }
 }
