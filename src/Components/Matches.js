@@ -8,6 +8,7 @@ import { Button, Grid } from '@material-ui/core'
 import SimpleMenu from './SimpleMenu'
 import DateP from './DatePickers'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { DesktopWindows } from '@material-ui/icons'
 
 export default class Matches extends Component {
   constructor() {
@@ -75,26 +76,50 @@ export default class Matches extends Component {
   }
 
   updateComponent() {
-    api.getAllAvailabeSeasons().then(
-      (res) => {
-        this.setState({
-          items: res,
-        })
-        this.sortData()
-        this.setState({
-          isLoaded: true,
-          itemsToShow: DataHantering.getMatchFromEveryLeague(this.state.items),
-          availableSeasons: DataHantering.getAvailableSeasonIds(
-            this.state.items
-          ),
-        })
-      },
-      (error) => {
-        this.setState({
-          error: error
-        })
-      }
-    )
+    if(sessionStorage.getItem('k')!=null){
+      console.log('loglll')
+      this.setState({
+     
+        items:JSON.parse(sessionStorage.getItem('k')),
+      
+        
+      })
+      this.sortData()
+      this.setState({
+        isLoaded: true,
+        itemsToShow: DataHantering.getMatchFromEveryLeague(JSON.parse(sessionStorage.getItem('k'))),
+        availableSeasons: DataHantering.getAvailableSeasonIds(
+          this.state.items),
+      })
+    }
+    else{
+      api.getAllAvailabeSeasons().then(
+        (res) => {
+         
+          this.setState({
+            items: res,
+           
+          })
+
+          this.sortData()
+          this.setState({
+            isLoaded: true,
+            itemsToShow: DataHantering.getMatchFromEveryLeague(this.state.items),
+            availableSeasons: DataHantering.getAvailableSeasonIds(
+              this.state.items
+            ),
+          })
+          sessionStorage.setItem('k', JSON.stringify(this.state.items));
+          console.log(JSON.parse(sessionStorage.getItem('k')))
+        },
+        (error) => {
+          this.setState({
+            error: error
+          })
+        }
+      )
+    }
+   
   }
 
   render() {
