@@ -1,38 +1,72 @@
 import React, { useState, useEffect } from 'react'
 import Table from './StandingTable'
+import api from './api'
 
-export default function LoadTable(props) {
-  const [state, setState] = useState({
-    error: null,
-    isLoaded: false,
-    items: [],
-  })
+export default class LoadTable extends React.Component {
 
-  useEffect(() => {
-    props.getData().then(
+  constructor(props) {
+    super(props)
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: [],
+      seasonId: this.props.seasonId,
+    }
+    this.updateComponent = this.updateComponent.bind(this)
+  }
+
+  componentDidMount() {
+    if(this.props.seasonId!=0){
+      this.updateComponent()
+    }
+  }
+
+
+  updateComponent() {
+    api.getTableBySeasonId(this.props.seasonId).then(
       (res) => {
-        setState({
+        this.setState({
           isLoaded: true,
           items: res.data,
+          seasonId:this.props.seasonId
         })
+        console.log(this.state.items)
       },
       (error) => {
-        setState({
+        this.setState({
           isLoaded: true,
           error: error,
           items: [],
         })
       }
     )
-    // eslint-disable-next-line
-  }, [props])
+  }
+   render(){
 
-  const { error, isLoaded, items } = state
-  if (error) {
-    return <div>Error: {error.message}</div>
-  } else if (!isLoaded) {
-    return <div>Loading...</div>
-  } else {
-    return <Table items={items} />
+    if (this.props.seasonId!=this.state.seasonId) {
+      this.updateComponent()
+    }
+    if (this.props.seasonId==this.state.seasonId) {
+      return (
+
+   
+        <div>
+          {
+          (this.state.error && <div>Error: {this.state.error.message}</div>)
+          || (!this.state.isLoaded && <div>Loading...</div>)
+          || (this.state.isLoaded && <Table items={this.state.items} />)
+        }
+        </div>
+        
+        
+      )
+    } else return null
+    
+
+    
+   
+   
+ 
+
   }
 }
