@@ -10,11 +10,23 @@ import api from './api'
 const styles = theme => ({
 
   txt: {
-    color: "#a83432",
     textAlign: 'center',
     fontStyle: 'italic',
+    backgroundColor: "#f7f7fa",
+    height: "10%",
+ 
 
-  },
+
+    },
+    root: {
+
+      backgroundColor: "#f7f7fa",
+      borderRadius : 15,
+      width:"40%",
+      marginLeft:"35%",
+      boxShadow: 'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
+  
+      },
   saveBtn: {
     color: "#f5eded",
   },
@@ -162,7 +174,7 @@ class AddLeagueForm extends React.Component {
             p={1}
             m={1}
           >
-            <Box p={1}  >
+            <Box p={1} className={classes.txt} >
               <TextValidator
                 label="League Name"
                 onChange={this.handleChange}
@@ -173,7 +185,7 @@ class AddLeagueForm extends React.Component {
                 errorMessages={['this field is required', 'LeagueName is Not valid']}
               />
             </Box>
-            <Box p={1}  >
+            <Box p={1} className={classes.txt}  >
               <TextValidator
                 label="Sport Name"
                 onChange={this.handleChange}

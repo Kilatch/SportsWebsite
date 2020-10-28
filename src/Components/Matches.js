@@ -4,9 +4,10 @@ import DataHantering from './DataHantering'
 import CardObj from './CardObj'
 import './general.css'
 import { makeStyles } from '@material-ui/core/styles'
-import { Grid } from '@material-ui/core'
+import { Button, Grid } from '@material-ui/core'
 import SimpleMenu from './SimpleMenu'
 import DateP from './DatePickers'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class Matches extends Component {
   constructor() {
@@ -16,6 +17,10 @@ export default class Matches extends Component {
       items: [],
       itemsToShow: [],
       availableSeasons: [],
+      started: false,
+      isLoaded: false
+
+
     }
     this.updateComponent = this.updateComponent.bind(this)
     this.sortData = this.sortData.bind(this)
@@ -51,9 +56,16 @@ export default class Matches extends Component {
   }
 
   dateHandler(date) {
-    this.setState({
-      itemsToShow: DataHantering.getMatchByDate(date, this.state.items),
-    })
+    if (this.state.started == true) {
+      this.setState({
+        itemsToShow: DataHantering.getMatchByDate(date, this.state.items),
+      })
+    }
+    else {
+      this.setState(
+        { started: true }
+      )
+    }
   }
 
   getMatchTwo(id1, id2) {
@@ -70,6 +82,7 @@ export default class Matches extends Component {
         })
         this.sortData()
         this.setState({
+          isLoaded: true,
           itemsToShow: DataHantering.getMatchFromEveryLeague(this.state.items),
           availableSeasons: DataHantering.getAvailableSeasonIds(
             this.state.items
@@ -78,38 +91,43 @@ export default class Matches extends Component {
       },
       (error) => {
         this.setState({
-          error,
+          error: error
         })
       }
     )
   }
 
   render() {
+    if(!this.state.isLoaded){
+      return  <div className="progressbar"><CircularProgress size={100} /></div>
+    }
+    if(this.state.error){
+    return  <div>{this.state.error}</div>
+    }
+
     if (this.state.items.length > 0) {
       return (
         <div>
           <div className="bar">
             <div className="menu">
-              <SimpleMenu
-                handelList={this.handelList}
-                season={'Select season ||'}
-                seasons={this.state.availableSeasons}
-              />
+              <SimpleMenu handelList={this.handelList} season={'| Select season'} seasons={this.state.availableSeasons} />
             </div>
             <div className="date">
-              <DateP
-                dates={DataHantering.getAllDates(this.state.items)}
-                dateHandler={this.dateHandler}
-              />
+              <DateP dates={DataHantering.getAllDates(this.state.items)} dateHandler={this.dateHandler} />
             </div>
           </div>
-
+         
           <Grid item container xs={12}>
+
             {this.state.itemsToShow.map((data, index) => (
               <div key={index}>
                 <CardObj d={data} getMatchTwo={this.getMatchTwo} />
+
+
+
               </div>
             ))}
+
           </Grid>
         </div>
       )

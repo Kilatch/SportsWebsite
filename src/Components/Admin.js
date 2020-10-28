@@ -15,11 +15,11 @@ const styles = theme => ({
     m: 1,
     marginRight: "10%",
     marginTop: "25px",
-    backgroundColor: "#6d6d70",
+    backgroundColor: "#000008",
     boxShadow: 'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
     //backgroundImage: `url(${FormBackground})`,
     width: "100%",
-    borderRadius : 25,
+    //borderRadius : 25,
 
   },
   adminP: {

@@ -2,9 +2,9 @@
  * @author Ali Hussien
  */
 import React, { useState } from 'react'
-
 import { NavLink } from 'react-router-dom'
 import '../styles/SportsNavBar.css'
+
 
 
 const SportsNavBar = ({ sports, onClick }) => {
@@ -57,10 +57,9 @@ const SportsNavBar = ({ sports, onClick }) => {
         onClick={() => {
           animateSportsNavLinks(nextSports)
         }}
-        className={`fas fa-arrow-right add-more ${
-          currentPage >= Math.round(sports.length / sportsPerSlide) + 1 &&
+        className={`fas fa-arrow-right add-more ${currentPage >= Math.round(sports.length / sportsPerSlide) + 1 &&
           'hide'
-        }`}
+          }`}
       ></i>
     </div>
   )

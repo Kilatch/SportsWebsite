@@ -9,7 +9,7 @@ import SportLeagueList from './SportLeagueList'
 
 const Sports = () => {
   const [sports, setSports] = useState([])
-  const [sportID, setSportID] = useState(1)
+  const [sportID, setSportID] = useState(0)
 
   const sportClicked = (id) => {
     setSportID(id)
@@ -20,6 +20,8 @@ const Sports = () => {
       setSports(data.data)
     })
   }, [])
+
+  
   return (
     <div>
       <SportsNavBar sports={sports} onClick={sportClicked} />

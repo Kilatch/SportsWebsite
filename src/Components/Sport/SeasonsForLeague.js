@@ -33,7 +33,10 @@ export default class SeasonsForLeague extends Component {
           items: res.data,
           leagueId: this.props.leagueId,
         })
+    
 
+        
+        
         console.log(this.state.items)
       },
       (error) => {
@@ -53,8 +56,9 @@ export default class SeasonsForLeague extends Component {
       let season = this.state.items[0]
       return (
         <div>
+          <h3 className="league-list"> {season.league.name} </h3>
           <h4 className="season-year">{season.startYear}</h4>
-          <LoadTable getData={() => api.getTableBySeasonId(season.id)} />
+          <LoadTable seasonId={season.id} />
         </div>
       )
     } else return null
