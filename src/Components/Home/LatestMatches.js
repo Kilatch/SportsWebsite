@@ -93,7 +93,7 @@ const LatestMatches = ({ latestmatches }) => {
           <div className="league-name">
             <Link
               className="league-name"
-              to={`/season/${currentMatch.leagueId}`}
+              to={`/league/${currentMatch.leagueId}`}
             >
               {currentMatch.leagueName}
             </Link>
