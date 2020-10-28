@@ -3,6 +3,7 @@ import api from './api'
 import CardObj from './CardObj'
 import { Grid } from '@material-ui/core'
 import LoadTable from './LoadTable'
+import './styles/SportLeagueList.css'
 
 export default function SeasonMatch({ match: { params: { id } } }) {
   let cachKey = "seasonMatch:" + id
@@ -25,7 +26,7 @@ export default function SeasonMatch({ match: { params: { id } } }) {
         if (res.data.length > 1) {
           tmp.matches = res.data
           tmp.isLoaded = true
-          tmp.season = res.data[0].round.season.startYear
+          tmp.season = res.data[0].round.season.startYear + " - " + res.data[0].round.season.endYear 
           tmp.leagueName = res.data[0].round.season.league.name
           setState(tmp)
           sessionStorage.setItem(cachKey, JSON.stringify(tmp))
@@ -50,10 +51,10 @@ export default function SeasonMatch({ match: { params: { id } } }) {
   } else {
     return (
       <>
-        <h1>{state.leagueName}</h1>
-        <h1>{state.season}</h1>
+        <h1 className="league-list">{state.leagueName}</h1>
+        <h1 className="season-year">{state.season}</h1>
         <LoadTable seasonId={state.id} />
-        <h1>Matches</h1>
+        <h1 className="league-list">Matches</h1>
         <Grid item container xs={12}>
           {state.matches.map((data, index) => (
             <div key={index}>
