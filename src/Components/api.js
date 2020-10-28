@@ -10,20 +10,14 @@ const getGamesByTeamId = async (id) => {
   let res = await axios.get(API_URL + '/games/' + id)
   return res
 }
-const seasonsExist = async (id) => {
-  let exist=false
-  let res = await getSeasonsByLeague(id)
-    if(res.data.length>0) exist=true;
 
-  return exist
-}
 const AddNewSport = async (spName) => {
   let res = await axios.post(API_URL_POST + '/newsport/' + spName)
   return res
 }
-const addNewLeague=async(leagueN, sportId)=>{
- 
-  let res = await axios.post(API_URL_POST+'/newleaguetosport/'+leagueN+'/'+sportId)
+const addNewLeague = async (leagueN, sportId) => {
+
+  let res = await axios.post(API_URL_POST + '/newleaguetosport/' + leagueN + '/' + sportId)
   return res
 
 }
@@ -110,5 +104,5 @@ export default {
   getGamesByTeamId,
   AddNewSport,
   addNewLeague,
-  seasonsExist,
+
 }

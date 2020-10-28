@@ -13,6 +13,10 @@ const styles = theme => ({
     color:"#a83432",
     textAlign: 'center',
     fontStyle: 'italic',
+    backgroundColor: "#f7f7fa",
+    height: "10%",
+    borderRadius : 15,
+
 
     },
   saveBtn:{
@@ -137,13 +141,14 @@ class AddSportForm extends React.Component {
         m={1}   
     >
       
-          <Box p={1}  >
+          <Box p={1} className={classes.txt}>
           <TextValidator
             label="Sport Name"
             onChange={this.handleChange}
             className={classes.textVal}
             name="sportName"
             value={formData.sportName}
+            variant="outlined"
             validators={['required', 'isText']}
             errorMessages={['this field is required', 'SportName is Not valid']}
           />
@@ -158,6 +163,8 @@ class AddSportForm extends React.Component {
             {
               (submitted && <div><SaveIcon color="primary"/> <AlertDialogOnDBchange op={true} handleDialog = {this.handleDialog }/></div>)
               || (!submitted && <SaveIcon color="secondary"/>)
+              
+
             }
           </Button>
         </Box>
