@@ -6,6 +6,7 @@ import Sports from './Components/Sport/Sports'
 import Matches from './Components/Matches'
 import Admin from './Components/Admin'
 import Team from './Components/Team'
+import SeasonMatch from './Components/SeasonMatch'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/matches" component={Matches} />
           <Route path="/admin" component={Admin} />
           <Route path="/team/:id" component={Team} />
+          <Route path="/season/:id" exact component={SeasonMatch} />
         </Switch>
       </div>
     </Router>
