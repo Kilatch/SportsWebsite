@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/SportsWebsite/static/css/main.a9e21873.chunk.css",
+    "main.js": "/SportsWebsite/static/js/main.f310802c.chunk.js",
+    "main.js.map": "/SportsWebsite/static/js/main.f310802c.chunk.js.map",
+    "runtime-main.js": "/SportsWebsite/static/js/runtime-main.a2276727.js",
+    "runtime-main.js.map": "/SportsWebsite/static/js/runtime-main.a2276727.js.map",
+    "static/js/2.2fec3690.chunk.js": "/SportsWebsite/static/js/2.2fec3690.chunk.js",
+    "static/js/2.2fec3690.chunk.js.map": "/SportsWebsite/static/js/2.2fec3690.chunk.js.map",
+    "index.html": "/SportsWebsite/index.html",
+    "precache-manifest.431a5e9e207156c64deeb2e03663a6f3.js": "/SportsWebsite/precache-manifest.431a5e9e207156c64deeb2e03663a6f3.js",
+    "service-worker.js": "/SportsWebsite/service-worker.js",
+    "static/css/main.a9e21873.chunk.css.map": "/SportsWebsite/static/css/main.a9e21873.chunk.css.map",
+    "static/js/2.2fec3690.chunk.js.LICENSE.txt": "/SportsWebsite/static/js/2.2fec3690.chunk.js.LICENSE.txt",
+    "static/media/Home.css": "/SportsWebsite/static/media/bg.752f43e3.jpg",
+    "static/media/s.jpg": "/SportsWebsite/static/media/s.81ee673f.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a2276727.js",
+    "static/js/2.2fec3690.chunk.js",
+    "static/css/main.a9e21873.chunk.css",
+    "static/js/main.f310802c.chunk.js"
+  ]
+}
