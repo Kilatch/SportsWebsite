@@ -19,7 +19,9 @@ export default class SportLeagueList extends Component {
   }
 
   componentDidMount() {
-    this.updateComponent()
+    if(this.props.sportId!=0){
+      this.updateComponent()
+    }
   }
 
   updateComponent() {
@@ -49,7 +51,14 @@ export default class SportLeagueList extends Component {
           <ul className="league-list">
             {this.state.items.map((data, index) => (
               <div key={index}>
-                <h2>{data.name}</h2>
+               
+                {(api.seasonsExist(data.id)==true )&&
+             
+                     (<h2>{data.name}</h2>)
+                                 
+                  }
+               
+             
                 <SeasonsForLeague leagueId={data.id} />
               </div>
             ))}

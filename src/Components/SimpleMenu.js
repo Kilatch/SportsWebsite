@@ -26,8 +26,10 @@ export default function SimpleMenu({ season, handelList, seasons }) {
     };
 
     const handleClose = (event) => {
+     if(event){
         setAnchorEl(null);
         handelList(event.currentTarget.value)
+     }
     };
 
     return (
