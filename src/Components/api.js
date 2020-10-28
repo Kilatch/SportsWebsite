@@ -6,10 +6,22 @@ import axios from 'axios'
 
 const API_URL = 'http://grupp5test.jls-sto1.elastx.net/get'
 const API_URL_POST = 'http://grupp5test.jls-sto1.elastx.net/add'
+
 const getGamesByTeamId = async (id) => {
   let res = await axios.get(API_URL + '/games/' + id)
   return res
 }
+
+const getHomeGamesByTeamId = async (id) => {
+  let res = await axios.get(API_URL + '/homegames/' + id)
+  return res
+}
+
+const getAwayGamesByTeamId = async (id) => {
+  let res = await axios.get(API_URL + '/awaygames/' + id)
+  return res
+}
+
 const AddNewSport = async (spName) => {
   let res = await axios.post(API_URL_POST + '/newsport/' + spName)
   return res
@@ -100,7 +112,9 @@ export default {
   getSeasonsByLeague,
   getAllAvailabeSeasons,
   getMatchBySeason,
+  getAwayGamesByTeamId,
   getGamesByTeamId,
+  getHomeGamesByTeamId,
   AddNewSport,
   addNewLeague,
 }
