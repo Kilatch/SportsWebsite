@@ -12,7 +12,6 @@ const getGamesByTeamId = async (id) => {
   return res
 }
 
-<<<<<<< HEAD
 const getHomeGamesByTeamId = async (id) => {
   let res = await axios.get(API_URL + '/homegames/' + id)
   return res
@@ -23,8 +22,6 @@ const getAwayGamesByTeamId = async (id) => {
   return res
 }
 
-=======
->>>>>>> origin/updateAndBugFix
 const AddNewSport = async (spName) => {
   let res = await axios.post(API_URL_POST + '/newsport/' + spName)
   return res

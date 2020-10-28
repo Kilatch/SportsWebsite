@@ -98,22 +98,19 @@ export default class Matches extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-
-=======
     if(!this.state.isLoaded){
       return  <div className="progressbar"><CircularProgress size={100} /></div>
     }
     if(this.state.error){
     return  <div>{this.state.error}</div>
     }
->>>>>>> origin/updateAndBugFix
+
     if (this.state.items.length > 0) {
       return (
         <div>
           <div className="bar">
             <div className="menu">
-              <SimpleMenu handelList={this.handelList} season={'Select season ||'} seasons={this.state.availableSeasons} />
+              <SimpleMenu handelList={this.handelList} season={'| Select season'} seasons={this.state.availableSeasons} />
             </div>
             <div className="date">
               <DateP dates={DataHantering.getAllDates(this.state.items)} dateHandler={this.dateHandler} />
@@ -124,7 +121,7 @@ export default class Matches extends Component {
 
             {this.state.itemsToShow.map((data, index) => (
               <div key={index}>
-                <CardObj d={data} getMatchTwo={this.getMatchTwo} />)
+                <CardObj d={data} getMatchTwo={this.getMatchTwo} />
 
 
 
@@ -134,8 +131,6 @@ export default class Matches extends Component {
           </Grid>
         </div>
       )
-    } else return (
-      <Button>Hej</Button>
-    )
+    } else return null
   }
 }
