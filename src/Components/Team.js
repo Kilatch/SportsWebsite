@@ -4,6 +4,7 @@ import CardObj from './CardObj';
 import { Grid } from '@material-ui/core';
 import LoadTable from './LoadTable';
 import Button from '@material-ui/core/Button';
+import './styles/SportLeagueList.css'
 
 function Team({ match: { params: { id } } }) {
   let cachKey = "teamDetail:" + id
@@ -118,8 +119,7 @@ function Team({ match: { params: { id } } }) {
     return (
       <div>
         {console.log(state.teamName)}
-        <h1>{state.teamName}</h1>
-        <LoadTable seasonId={state.seasonId} />
+        <h1 className="league-list">{state.teamName}</h1>
         <Button variant="contained" onClick={allMatches}>
           All Matches
         </Button>
