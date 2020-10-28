@@ -1,47 +1,49 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import styles from './styles/Table.css'
 
 export default function StandingTable(props) {
-
+  
   const [state, setState] = useState({
-    items: props.items
+    items: props.items,
+  
   });
 
   let sortByName = () => {
-    let tmp = (a, b) => { return a.teamName.localeCompare(b.teamName) }
+    let tmp = (a, b) => {return a.teamName.localeCompare(b.teamName)}
     sort(tmp)
   }
   let sortByPoints = () => {
-    let tmp = (a, b) => { return b.points - a.points }
+    let tmp = (a, b) => {return b.points-a.points}
     sort(tmp)
   }
   let sortByGoals = () => {
-    let tmp = (a, b) => { return b.goals - a.goals }
+    let tmp = (a, b) => {return b.goals-a.goals}
     sort(tmp)
   }
 
   let sortByGoalsConsided = () => {
-    let tmp = (a, b) => { return b.goalsConseded - a.goalsConseded }
+    let tmp = (a, b) => {return b.goalsConseded-a.goalsConseded}
     sort(tmp)
   }
   let sortByGoalsDiffrens = () => {
-    let tmp = (a, b) => { return b.goalDifference - a.goalDifference }
+    let tmp = (a, b) => {return b.goalDifference-a.goalDifference}
     sort(tmp)
   }
   let sortByLosses = () => {
-    let tmp = (a, b) => { return b.loss - a.loss }
+    let tmp = (a, b) => {return b.loss-a.loss}
     sort(tmp)
   }
   let sortByDraws = () => {
-    let tmp = (a, b) => { return b.draws - a.draws }
+    let tmp = (a, b) => {return b.draws-a.draws}
     sort(tmp)
   }
   let sortByWins = () => {
-    let tmp = (a, b) => { return b.wins - a.wins }
+    let tmp = (a, b) => {return b.wins-a.wins}
     sort(tmp)
   }
   let sortByMatch = () => {
-    let tmp = (a, b) => { return b.gamesPlayed - a.gamesPlayed }
+    let tmp = (a, b) => {return b.gamesPlayed-a.gamesPlayed}
     sort(tmp)
   }
 
@@ -52,7 +54,7 @@ export default function StandingTable(props) {
       items: table
     })
   }
-
+ 
 
   if (state.items != null && state.items.length > 0) {
     return (
@@ -74,9 +76,9 @@ export default function StandingTable(props) {
           {state.items.map(row => (
             <tr key={row.teamId}>
               <td className="teamName">
-                <a href={"/team/" + row.teamId}>
-                  {row.teamName}
-                </a>
+                <Link to={'/team/'+row.teamId} > 
+                {row.teamName}
+                </Link>
               </td>
               <td>{row.gamesPlayed}</td>
               <td>{row.wins}</td>

@@ -7,18 +7,20 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, Grid } from '@material-ui/core'
 import SimpleMenu from './SimpleMenu'
 import DateP from './DatePickers'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class Matches extends Component {
-  constructor() {
-    super()
-    this.state = {
+  cachKey = "matchList:" 
+  constructor(props) {
+    super(props)
+    this.state = JSON.parse(sessionStorage.getItem(this.cachKey)) ||
+    {
       error: null,
       items: [],
       itemsToShow: [],
       availableSeasons: [],
       started: false,
-      isLoaded: false,
+      isLoaded: false
     }
     this.updateComponent = this.updateComponent.bind(this)
     this.sortData = this.sortData.bind(this)
@@ -27,6 +29,7 @@ export default class Matches extends Component {
     this.dateHandler = this.dateHandler.bind(this)
     this.getMatchTwo = this.getMatchTwo.bind(this)
   }
+
 
   useStyles = makeStyles({
     divFilter: {
@@ -58,8 +61,11 @@ export default class Matches extends Component {
       this.setState({
         itemsToShow: DataHantering.getMatchByDate(date, this.state.items),
       })
-    } else {
-      this.setState({ started: true })
+    }
+    else {
+      this.setState(
+        { started: true }
+      )
     }
   }
 
@@ -70,38 +76,40 @@ export default class Matches extends Component {
   }
 
   updateComponent() {
-    api.getAllAvailabeSeasons().then(
-      (res) => {
-        this.setState({
-          items: res,
-        })
-        this.sortData()
-        this.setState({
-          isLoaded: true,
-          itemsToShow: DataHantering.getMatchFromEveryLeague(this.state.items),
-          availableSeasons: DataHantering.getAvailableSeasonIds(
-            this.state.items
-          ),
-        })
-      },
-      (error) => {
-        this.setState({
-          error: error,
-        })
-      }
-    )
+    if(!this.state.isLoaded){
+      api.getAllAvailabeSeasons().then(
+        (res) => {
+          let tmp = {...this.state}
+            tmp.isLoaded = true
+            tmp.items = res
+            this.setState({items:res})
+            
+            this.sortData()
+            tmp.itemsToShow= DataHantering.getMatchFromEveryLeague(this.state.items)
+            tmp.availableSeasons=DataHantering.getAvailableSeasonIds(
+              this.state.items
+            )
+            this.setState(tmp)
+            sessionStorage.setItem(this.cachKey, JSON.stringify(tmp))
+         
+        
+        },
+        (error) => {
+          this.setState({
+            error: error
+          })
+        }
+      )
+    }
+   
   }
 
   render() {
-    if (!this.state.isLoaded) {
-      return (
-        <div className="progressbar">
-          <CircularProgress size={100} />
-        </div>
-      )
+    if(!this.state.isLoaded){
+      return  <div className="progressbar"><CircularProgress size={100} /></div>
     }
-    if (this.state.error) {
-      return <div>{this.state.error}</div>
+    if(this.state.error){
+    return  <div>{this.state.error}</div>
     }
 
     if (this.state.items.length > 0) {
@@ -109,26 +117,24 @@ export default class Matches extends Component {
         <div>
           <div className="bar">
             <div className="menu">
-              <SimpleMenu
-                handelList={this.handelList}
-                season={'| Select season'}
-                seasons={this.state.availableSeasons}
-              />
+              <SimpleMenu handelList={this.handelList} season={'| Select season'} seasons={this.state.availableSeasons} />
             </div>
             <div className="date">
-              <DateP
-                dates={DataHantering.getAllDates(this.state.items)}
-                dateHandler={this.dateHandler}
-              />
+              <DateP dates={DataHantering.getAllDates(this.state.items)} dateHandler={this.dateHandler} />
             </div>
           </div>
-
+         
           <Grid item container xs={12}>
+
             {this.state.itemsToShow.map((data, index) => (
               <div key={index}>
                 <CardObj d={data} getMatchTwo={this.getMatchTwo} />
+
+
+
               </div>
             ))}
+
           </Grid>
         </div>
       )
