@@ -53,11 +53,6 @@ export default class SeasonsForLeague extends Component {
           items: res.data,
           leagueId: this.props.leagueId,
         })
-<<<<<<< HEAD
-  
-=======
->>>>>>> origin/dev
-
         console.log(this.state.items)
       },
       (error) => {
@@ -74,27 +69,6 @@ export default class SeasonsForLeague extends Component {
     }
     if (this.state.items.length > 0) {
       this.sortData()
-<<<<<<< HEAD
-      let season ;
-      if(this.state.seasonToShow==null)season = this.state.items[0];
-      else{season=this.state.seasonToShow}
-
-      
-        return (
-         
-          <div>
-           
-            <h3 className="league-list"> {season.league.name} </h3>
-            <Link to={'/season/' + season.id}>
-              <h4 className="season-year"> {season.startYear}</h4>
-            </Link>
-           
-            <LoadTable seasonId={season.id} />
-            <LoadBottomNav updateSeason={this.updateSeason} />
-          </div>
-        )
-      
-=======
       let season = this.state.items[0]
       return (
         <div>
@@ -105,7 +79,6 @@ export default class SeasonsForLeague extends Component {
           <LoadTable seasonId={season.id} />
         </div>
       )
->>>>>>> origin/dev
     } else return null
   }
 }
