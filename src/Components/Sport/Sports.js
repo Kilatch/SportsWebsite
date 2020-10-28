@@ -1,5 +1,5 @@
 /**
- * @author Ali
+ * @author Ali Hussien
  */
 
 import React, { useState, useEffect } from 'react'
@@ -21,7 +21,6 @@ const Sports = () => {
     })
   }, [])
 
-  
   return (
     <div>
       <SportsNavBar sports={sports} onClick={sportClicked} />

@@ -34,10 +34,7 @@ export default class SeasonsForLeague extends Component {
           items: res.data,
           leagueId: this.props.leagueId,
         })
-    
 
-        
-        
         console.log(this.state.items)
       },
       (error) => {
@@ -58,7 +55,7 @@ export default class SeasonsForLeague extends Component {
       return (
         <div>
           <h3 className="league-list"> {season.league.name} </h3>
-          <Link to={"/season/" + season.id} >
+          <Link to={'/season/' + season.id}>
             <h4 className="season-year"> {season.startYear}</h4>
           </Link>
           <LoadTable seasonId={season.id} />
