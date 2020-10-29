@@ -55,7 +55,7 @@ export default function SeasonMatch({ match: { params: { id } } }) {
         <h1 className="season-year">{state.season}</h1>
         <LoadTable seasonId={state.id} />
         <h1 className="league-list">Matches</h1>
-        <Grid item container xs={12}>
+        <Grid item justify="space-evenly" container xs={12}>
           {state.matches.map((data, index) => (
             <div key={index}>
               <CardObj d={data} getMatchTwo={(x, y) => { return null }} />
