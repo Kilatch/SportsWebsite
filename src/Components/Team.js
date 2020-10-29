@@ -30,7 +30,7 @@ function Team({
           let teamName
 
           if (res.data.length > 0) {
-            if (res.data[0].homeTeam.id === id) {
+            if (res.data[0].homeTeam.id == id) {
               teamName = res.data[0].homeTeam.name
             } else {
               teamName = res.data[0].awayTeam.name
