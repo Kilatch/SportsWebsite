@@ -14,6 +14,7 @@ const styles = (theme) => ({
     backgroundColor: '#f7f7fa',
     height: '10%',
     borderRadius: 15,
+    marginLeft:"25%"
   },
   saveBtn: {
     color: '#f5eded',
