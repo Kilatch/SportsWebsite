@@ -1,120 +1,129 @@
 /**
  * @author Ali Hussien
  */
- 
-a{
-    text-decoration: none;
+
+a {
+  text-decoration: none;
 }
 
-nav{
-    display: flex;
-    justify-content: space-around;
-    background-color: #201c1c;
-    min-height: 10vh;
-    align-items: center;
-    z-index: 1;
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #201c1c;
+  min-height: 10vh;
+  align-items: center;
+  z-index: 1;
 }
 
-.hamburger{
-    font-size: 2rem;
+.hamburger {
+  font-size: 2rem;
 }
 
-.logo{
-    font-size: 2rem;
-    color: white;
+.logo {
+  font-size: 2rem;
+  color: white;
 }
 
-.icon{
-    display: flex;
-    align-items: center;
-    transition: all 0.2s ease-in;
+.icon {
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-in;
 }
 
-.logo-text{
-    font-weight: 10;
-    margin-left: 5px;
+.logo-text {
+  font-weight: 10;
+  margin-left: 5px;
 }
 
-.icon:hover > p{
-    color: #4758d6;
-    transition: all 0.3s ease-out;
+.icon:hover > p {
+  color: #4758d6;
+  transition: all 0.3s ease-out;
 }
-.nav-links{
-    width: 50%;
-    display: flex;
-    list-style: none;
-    justify-content: space-around;
-    font-size: 1.5rem;
+.nav-links {
+  width: 50%;
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  font-size: 1.5rem;
 }
 
 .link a {
-    padding: 10px;
-    color: white;
-    transition: color 0.2s ease-in;
+  padding: 10px;
+  color: white;
+  transition: color 0.2s ease-in;
 }
 
-.link a:hover{
-    color: 	#4758d6;
+.link a:hover {
+  color: #4758d6;
 }
 
+.hamburger-toggle {
+  cursor: pointer;
+  display: none;
+  color: white;
+  transition: all 0.2s ease-out;
+}
 
-.hamburger-toggle{
-    cursor: pointer;
+.hamburger-toggle:hover {
+  color: #4758d6;
+  transform: scale(1.1);
+  transition: all 0.3s ease-in;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  .hamburger-toggle {
+    display: block;
+  }
+  nav {
+    justify-content: space-between;
+    padding: 0px 50px;
+  }
+
+  .link a {
+    color: #201c1c;
+  }
+
+  .logo-text {
     display: none;
-    color: white;
-    transition: all 0.2s ease-out;
+  }
 
-}
-
-.hamburger-toggle:hover{
-    color: #4758d6;
+  .icon:hover {
+    /* color: #4758d6; */
     transform: scale(1.1);
-    transition: all 0.3s ease-in;
+    transition: all 0.2s ease-in;
+  }
+
+  .nav-links {
+    position: absolute;
+    right: -100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    top: 10vh;
+    background-color: #eeeded;
+    font-size: 2rem;
+    transition: all 0.5s ease-in;
+    display: none;
+  }
+
+  .active {
+    animation: 1s ease-out 0s 1 slideInFromAbove;
+    display: flex;
+    right: 0;
+  }
+
+  @keyframes slideInFromAbove {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
-
-
-@media screen and (max-width:768px){
-    body{
-        overflow-x: hidden;
-    }
-    .hamburger-toggle{
-        display: block;
-    }
-    nav{
-        justify-content: space-between;
-        padding: 0px 50px
-    }
-
-    .link a {
-        color: #201c1c;
-    }
-
-    .logo-text{
-        display: none;
-    }
-
-    .icon:hover{
-        /* color: #4758d6; */
-        transform: scale(1.1);
-        transition: all 0.2s ease-in;
-    }
-
-    .nav-links{
-        position: absolute;
-        right: -100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-        top: 10vh;
-        background-color: #eeeded;
-        font-size: 2rem;
-        transition: all 0.5s ease-in;
-    }
-    
-    .active{
-       right: 0;
-    }
-} 
