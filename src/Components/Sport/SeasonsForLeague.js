@@ -17,7 +17,7 @@ export default class SeasonsForLeague extends Component {
       error: null,
       items: [],
       seasonToShow: null,
-      index: 0
+      index: 0,
     }
     this.updateComponent = this.updateComponent.bind(this)
     this.sortData = this.sortData.bind(this)
@@ -33,16 +33,15 @@ export default class SeasonsForLeague extends Component {
   }
   updateSeason(value) {
     let len = this.state.items.length
-    if ((value == 0) && this.state.index < len) {
+    if (value == 0 && this.state.index < len) {
       this.setState({
         index: this.state.index + 1,
-        seasonToShow: this.state.items[this.state.index + 1]
+        seasonToShow: this.state.items[this.state.index + 1],
       })
-    }
-    else if ((value == 1) && this.state.index > 0) {
+    } else if (value == 1 && this.state.index > 0) {
       this.setState({
         index: this.state.index - 1,
-        seasonToShow: this.state.items[this.state.index - 1]
+        seasonToShow: this.state.items[this.state.index - 1],
       })
     }
     console.log(value)
@@ -71,18 +70,14 @@ export default class SeasonsForLeague extends Component {
     }
     if (this.state.items.length > 0) {
       this.sortData()
-
-      let season;
-      if (this.state.seasonToShow == null) season = this.state.items[0];
-      else { season = this.state.seasonToShow }
-
-
+      let season
+      if (this.state.seasonToShow == null) season = this.state.items[0]
+      else {
+        season = this.state.seasonToShow
+      }
       return (
-
         <div>
-          <Link to={'/league/' + season.league.id}>
-            <h3 className="league-list"> {season.league.name} </h3>
-          </Link>
+          <h3 className="league-list"> {season.league.name} </h3>
           <Link to={'/season/' + season.id}>
             <h4 className="season-year"> {season.startYear}</h4>
           </Link>
@@ -91,8 +86,6 @@ export default class SeasonsForLeague extends Component {
           <LoadBottomNav updateSeason={this.updateSeason} />
         </div>
       )
-
-
     } else return null
   }
 }
