@@ -16,8 +16,8 @@ export default class SeasonsForLeague extends Component {
       leagueId: props.leagueId,
       error: null,
       items: [],
-      seasonToShow:null,
-      index:0
+      seasonToShow: null,
+      index: 0
     }
     this.updateComponent = this.updateComponent.bind(this)
     this.sortData = this.sortData.bind(this)
@@ -31,16 +31,18 @@ export default class SeasonsForLeague extends Component {
   componentDidMount() {
     this.updateComponent()
   }
-  updateSeason(value){
-    let len=this.state.items.length
-    if((value==0)&&this.state.index<len){
-      this.setState({index:this.state.index+1,
-        seasonToShow:this.state.items[this.state.index+1]
+  updateSeason(value) {
+    let len = this.state.items.length
+    if ((value == 0) && this.state.index < len) {
+      this.setState({
+        index: this.state.index + 1,
+        seasonToShow: this.state.items[this.state.index + 1]
       })
     }
-    else  if((value==1)&&this.state.index>0){
-      this.setState({index:this.state.index-1,
-        seasonToShow:this.state.items[this.state.index-1]
+    else if ((value == 1) && this.state.index > 0) {
+      this.setState({
+        index: this.state.index - 1,
+        seasonToShow: this.state.items[this.state.index - 1]
       })
     }
     console.log(value)
@@ -70,25 +72,26 @@ export default class SeasonsForLeague extends Component {
     if (this.state.items.length > 0) {
       this.sortData()
 
-      let season ;
-      if(this.state.seasonToShow==null)season = this.state.items[0];
-      else{season=this.state.seasonToShow}
+      let season;
+      if (this.state.seasonToShow == null) season = this.state.items[0];
+      else { season = this.state.seasonToShow }
 
-      
-        return (
-         
-          <div>
-           
+
+      return (
+
+        <div>
+          <Link to={'/league/' + season.league.id}>
             <h3 className="league-list"> {season.league.name} </h3>
-            <Link to={'/season/' + season.id}>
-              <h4 className="season-year"> {season.startYear}</h4>
-            </Link>
-           
-            <LoadTable seasonId={season.id} />
-            <LoadBottomNav updateSeason={this.updateSeason} />
-          </div>
-        )
-      
+          </Link>
+          <Link to={'/season/' + season.id}>
+            <h4 className="season-year"> {season.startYear}</h4>
+          </Link>
+
+          <LoadTable seasonId={season.id} />
+          <LoadBottomNav updateSeason={this.updateSeason} />
+        </div>
+      )
+
 
     } else return null
   }
