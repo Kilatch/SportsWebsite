@@ -27,12 +27,11 @@ const AddNewSport = async (spName) => {
   return res
 }
 const addNewLeague = async (leagueN, sportId) => {
-
-  let res = await axios.post(API_URL_POST + '/newleaguetosport/' + leagueN + '/' + sportId)
+  let res = await axios.post(
+    API_URL_POST + '/newleaguetosport/' + leagueN + '/' + sportId
+  )
   return res
-
 }
-
 
 const getTableBySeasonId = async (id) => {
   let res = await axios.get(API_URL + '/tablebyseason/' + id)
@@ -76,7 +75,6 @@ const getAllAvailabeSeasons = async () => {
   let availableLeagueIds = await getAvailableListIds(availableSportIds, 1)
   let availableSeasonIds = await getAvailableListIds(availableLeagueIds, 0)
   let matchList = await getMatchesInAllSeasons(availableSeasonIds)
-  console.log(matchList)
   return matchList
 }
 
@@ -84,8 +82,8 @@ const getAvailableListIds = async (idList, type) => {
   let allIdList = []
   let tempList
   for (let i = 0; i < idList.length; i++) {
-    if (type == 1) tempList = await getLeagueBySport(idList[i])
-    if (type == 0) tempList = await getSeasonsByLeague(idList[i])
+    if (type === 1) tempList = await getLeagueBySport(idList[i])
+    if (type === 0) tempList = await getSeasonsByLeague(idList[i])
     for (let j = 0; j < tempList.data.length; j++) {
       let tempdata = tempList.data[j]
       if (tempdata != null) allIdList.push(tempdata.id)
@@ -117,5 +115,4 @@ export default {
   getHomeGamesByTeamId,
   AddNewSport,
   addNewLeague,
-
 }
