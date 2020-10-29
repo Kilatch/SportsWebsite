@@ -1,0 +1,17 @@
+.admin-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-nav{
+    display: flex;
+    padding: 1rem;
+    background-color: #e3e3e3;
+    justify-content: center;
+}
+
+.admin-body{
+    background-color:#515151;
+    display: flex;
+    justify-content: center;
+}

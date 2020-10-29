@@ -70,6 +70,7 @@ export default function AdminMenu({ handelList }) {
           </Button>
         </ButtonGroup>
         <Popper
+          style={{ zIndex: '1' }}
           open={open}
           anchorEl={anchorRef.current}
           role={undefined}

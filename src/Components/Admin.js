@@ -5,6 +5,7 @@ import AddSportForm from './AddSportForm'
 import AddLeagueForm from './AddLeagueForm'
 import { withStyles } from '@material-ui/core/styles'
 import api from './api'
+import './Admin.css'
 
 const styles = (theme) => ({
   root: {
@@ -77,20 +78,16 @@ class Admin extends React.Component {
     const { classes } = this.props
     const id = this.state.addTask
     return (
-      <div>
-        <div className={classes.dii}>
-          <div className={classes.diii}>
-            <Box>
-              <AdminMenu handelList={this.handelList} />
-            </Box>
+      <div className="admin-container">
+        <div className="admin-nav">
+          <div className="admin-nav-children">
+            <AdminMenu handelList={this.handelList} />
           </div>
         </div>
 
-        <div className={classes.diiiiii}>
-          <Box className={classes.root}>
-            {(id === 0 && <AddSportForm data={this.state.sports} />) ||
-              (id === 1 && <AddLeagueForm data={this.state.sports} />)}
-          </Box>
+        <div className="admin-body">
+          {(id === 0 && <AddSportForm data={this.state.sports} />) ||
+            (id === 1 && <AddLeagueForm data={this.state.sports} />)}
         </div>
       </div>
     )
