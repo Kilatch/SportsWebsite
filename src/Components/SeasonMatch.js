@@ -23,7 +23,7 @@ export default function SeasonMatch({ match: { params: { id } } }) {
       api.getMatchBySeason(id).then(res => {
 
         let tmp = { ...state }
-        if (res.data.length > 1) {
+        if (res.data.length > 0) {
           tmp.matches = res.data
           tmp.isLoaded = true
           tmp.season = res.data[0].round.season.startYear + " - " + res.data[0].round.season.endYear 
