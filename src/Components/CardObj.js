@@ -17,6 +17,10 @@ const useStyles = makeStyles({
     transitionDuration: '1s',
     boxShadow:
       'rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px',
+    '@media (max-width: 480px)': {
+      width: 275,
+      minHeight: 200,
+    },
   },
 
   teamCard: {
