@@ -6,6 +6,8 @@ export default class LoadTable extends React.Component {
   constructor(props) {
     super(props)
 
+    this.cachKey = 'loadTable:' + this.props.seasonId
+
     this.state = JSON.parse(sessionStorage.getItem(this.cachKey)) || {
       error: null,
       isLoaded: false,
@@ -41,6 +43,7 @@ export default class LoadTable extends React.Component {
   }
   render() {
     if (this.props.seasonId !== this.state.seasonId) {
+      this.cachKey = 'loadTable:' + this.props.seasonId
       this.updateComponent()
     }
     if (this.props.seasonId === this.state.seasonId) {

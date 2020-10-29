@@ -69,7 +69,9 @@ export default class SeasonsForLeague extends Component {
       let season = this.state.items[0]
       return (
         <div>
-          <h3 className="league-list"> {season.league.name} </h3>
+          <Link to={'/league/' + season.league.id}>
+            <h3 className="league-list"> {season.league.name} </h3>
+          </Link>
           <Link to={'/season/' + season.id}>
             <h4 className="season-year"> {season.startYear}</h4>
           </Link>
