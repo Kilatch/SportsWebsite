@@ -9,11 +9,16 @@ import Team from './Components/Team'
 import League from './Components/League'
 import SeasonMatch from './Components/SeasonMatch'
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  HashRouter,
+} from 'react-router-dom'
 
 function App() {
   return (
-    <Router>
+    <HashRouter basename="/">
       <div className="App">
         <Nav />
         <Switch>
@@ -26,7 +31,7 @@ function App() {
           <Route path="/league/:id" exact component={League} />
         </Switch>
       </div>
-    </Router>
+    </HashRouter>
   )
 }
 
