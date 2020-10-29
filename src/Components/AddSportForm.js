@@ -60,7 +60,7 @@ class AddSportForm extends React.Component {
   }
 
   handleDialog(saveOk) {
-    if (saveOk === 1) {
+    if (saveOk == 1) {
       this.addSportToApi(this.state.formData.sportName)
     }
     this.setState({ submitted: false })
