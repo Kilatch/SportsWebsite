@@ -22,7 +22,7 @@ const Sports = () => {
   }, [])
 
   return (
-    <div>
+    <div style={{ overflowX: 'hidden' }}>
       <SportsNavBar sports={sports} onClick={sportClicked} />
       <SportLeagueList sportId={sportID} />
     </div>

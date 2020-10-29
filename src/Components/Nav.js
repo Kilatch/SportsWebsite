@@ -44,7 +44,7 @@ function Nav() {
           </Link>
         </li>
 
-        <li className="link">
+        <li onClick={setHandleFalse} className="link">
           <Link to="/admin">Admin</Link>
         </li>
       </ul>

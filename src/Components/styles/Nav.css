@@ -55,6 +55,7 @@ nav {
 
 .link a:hover {
   color: #4758d6;
+  overflow-y: hidden;
 }
 
 .hamburger-toggle {
