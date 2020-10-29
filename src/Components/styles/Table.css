@@ -42,7 +42,12 @@ tr:last-child {
 }
 
 @media (orientation: portrait) {
+
+  table {
+    font-size: small;
+    
+  }
   .goals {
-    display: none;
+    /*display: none;*/
   }
 }
