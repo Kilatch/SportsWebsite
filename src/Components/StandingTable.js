@@ -95,17 +95,17 @@ export default function StandingTable(props) {
               <th onClick={sortByLosses}>L</th>
             </Tooltip>
             <Tooltip title="click to sort">
-              <th className="goals" onClick={sortByGoals}>
+              <th onClick={sortByGoals}>
                 G
               </th>
             </Tooltip>
             <Tooltip title="click to sort">
-              <th className="goals" onClick={sortByGoalsConsided}>
+              <th onClick={sortByGoalsConsided}>
                 GC
               </th>
             </Tooltip>
             <Tooltip title="click to sort">
-              <th className="goals" onClick={sortByGoalsDiffrens}>
+              <th onClick={sortByGoalsDiffrens}>
                 GD
               </th>
             </Tooltip>
