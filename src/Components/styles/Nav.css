@@ -12,6 +12,7 @@ nav{
     background-color: #201c1c;
     min-height: 10vh;
     align-items: center;
+    z-index: 1;
 }
 
 .hamburger{

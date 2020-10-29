@@ -2,25 +2,40 @@
  * @author Ali Hussien
  */
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
 import '../styles/SportsNavBar.css'
 
-
-
 const SportsNavBar = ({ sports, onClick }) => {
-  const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [sportsPerSlide, setSportsPerSlide] = useState(4)
+  const sportsPerSlide = 4
   const indexOfLastSport = currentPage * sportsPerSlide
   const indexOfFirstSport = indexOfLastSport - sportsPerSlide
   const currentSports = sports.slice(indexOfFirstSport, indexOfLastSport)
 
   const nextSports = () => {
-    // (currentPage + 1) % sportsPerSlide
     if (sports.length >= sportsPerSlide) setCurrentPage(currentPage + 1)
+    resetColors()
   }
   const previousSports = () => {
     setCurrentPage(currentPage - 1)
+    resetColors()
+  }
+
+  const resetColors = () => {
+    let sportNames = Array.from(document.querySelectorAll('#sportName'))
+    for (const sportname of sportNames) {
+      sportname.classList.remove('highlight')
+    }
+  }
+
+  const sportClickHandler = (e) => {
+    let sportNames = Array.from(document.querySelectorAll('#sportName'))
+    for (const sportname of sportNames) {
+      if (sportname.innerText === e.target.innerText) {
+        e.currentTarget.classList.add('highlight')
+      } else {
+        sportname.classList.remove('highlight')
+      }
+    }
   }
 
   const animateSportsNavLinks = (fn) => {
@@ -43,8 +58,10 @@ const SportsNavBar = ({ sports, onClick }) => {
       <ul id="sportsNavLinks" className="sports-nav-links">
         {currentSports.map((sport, index) => (
           <li
+            id="sportName"
             key={index}
-            onClick={() => {
+            onClick={(e) => {
+              sportClickHandler(e)
               onClick(sport.id)
             }}
           >
@@ -57,9 +74,10 @@ const SportsNavBar = ({ sports, onClick }) => {
         onClick={() => {
           animateSportsNavLinks(nextSports)
         }}
-        className={`fas fa-arrow-right add-more ${currentPage >= Math.round(sports.length / sportsPerSlide) + 1 &&
+        className={`fas fa-arrow-right add-more ${
+          currentPage >= Math.round(sports.length / sportsPerSlide) + 1 &&
           'hide'
-          }`}
+        }`}
       ></i>
     </div>
   )

@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Table from './StandingTable'
 import api from './api'
 
 export default class LoadTable extends React.Component {
-
   constructor(props) {
     super(props)
 
-    this.state =
-      JSON.parse(sessionStorage.getItem(this.cachKey)) ||
-      {
-        error: null,
-        isLoaded: false,
-        items: [],
-        seasonId: this.props.seasonId,
-      }
+    this.state = JSON.parse(sessionStorage.getItem(this.cachKey)) || {
+      error: null,
+      isLoaded: false,
+      items: [],
+      seasonId: this.props.seasonId,
+    }
   }
 
   componentDidMount() {
@@ -22,11 +19,10 @@ export default class LoadTable extends React.Component {
   }
 
   updateComponent = () => {
-    
-    if (!this.state.isLoaded || this.props.seasonId != this.state.seasonId) {
+    if (!this.state.isLoaded || this.props.seasonId !== this.state.seasonId) {
       api.getTableBySeasonId(this.props.seasonId).then(
         (res) => {
-          let tmp = {...this.state}
+          let tmp = { ...this.state }
           tmp.isLoaded = true
           tmp.items = res.data
           tmp.seasonId = this.props.seasonId
@@ -42,28 +38,19 @@ export default class LoadTable extends React.Component {
         }
       )
     }
-
   }
-   render(){
-
-    if (this.props.seasonId!=this.state.seasonId) {
+  render() {
+    if (this.props.seasonId !== this.state.seasonId) {
       this.updateComponent()
     }
-    if (this.props.seasonId==this.state.seasonId) {
+    if (this.props.seasonId === this.state.seasonId) {
       return (
-
-   
         <div>
-          {
-          (this.state.error && <div>Error: {this.state.error.message}</div>)
-          || (!this.state.isLoaded && <div>Loading...</div>)
-          || (this.state.isLoaded && <Table items={this.state.items} />)
-        }
+          {(this.state.error && <div>Error: {this.state.error.message}</div>) ||
+            (!this.state.isLoaded && <div>Loading...</div>) ||
+            (this.state.isLoaded && <Table items={this.state.items} />)}
         </div>
-        
-        
       )
     } else return null
-
   }
 }

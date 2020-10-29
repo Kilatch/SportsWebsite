@@ -1,19 +1,22 @@
-
 table {
   font-family: Arial, Helvetica, sans-serif;
   font-size: medium;
-  
   border-radius: 5px;
   border-collapse: collapse;
   color: black;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 100%;
 }
 
-td, th {
+td,
+th {
   text-align: center;
   padding: 10px 5px 10px 5px;
-  
+}
+
+th:hover {
+  color: #4758d6;
+  cursor: pointer;
 }
 
 tr {
@@ -27,6 +30,15 @@ tr:last-child {
 .teamName {
   text-align: left;
   padding-left: 25px;
+}
+
+.team-name-link{
+  color: black;
+}
+
+
+.team-name-link:hover{
+  color: #4758d6;
 }
 
 @media (orientation: portrait) {

@@ -30,6 +30,7 @@ const LatestMatches = ({ latestmatches }) => {
     let filteredMatchesById = latestmatches.filter(
       (match) => match.round.season.league.id === selectedSportLeague
     )
+
     let temp = []
     filteredMatchesById.map((match) => {
       temp.push({
@@ -151,8 +152,6 @@ const LatestMatches = ({ latestmatches }) => {
 
 export default LatestMatches
 const Match = ({ data: { homeID, awayID, homeTeam, awayTeam, result } }) => {
-  const teamClicked = () => {}
-
   return (
     <div className="match-container">
       <div className="teams">
