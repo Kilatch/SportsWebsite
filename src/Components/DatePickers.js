@@ -1,46 +1,38 @@
-import 'date-fns';
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
+import 'date-fns'
+import React from 'react'
+import DateFnsUtils from '@date-io/date-fns'
 import { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import { makeStyles } from '@material-ui/core/styles'
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
-  DatePicker
-} from '@material-ui/pickers';
-import { CallMissedSharp } from '@material-ui/icons';
+} from '@material-ui/pickers'
 
 const useStyles = makeStyles({
   b: {
-   color: ' #ffff',
+    color: ' #ffff',
     '&:hover': {
-      backgroundColor: "#b0bec5",
+      backgroundColor: '#b0bec5',
     },
   },
-
-});
-
+})
 
 export default function DateP({ dates, dateHandler }) {
-
-  const classes = useStyles();
+  const classes = useStyles()
   // The first commit of Material-UI
   const [state, setState] = useState({
     datum: new Date(),
-    started: false
-
-  });
+    started: false,
+  })
 
   function formateDate(date) {
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
+    let year = date.getFullYear()
+    let month = date.getMonth() + 1
     let day = date.getDate()
-    let d = year + "-" + month + "-" + day;
-    return d;
+    let d = year + '-' + month + '-' + day
+    return d
   }
 
   function disableWeekends(date) {
@@ -48,48 +40,39 @@ export default function DateP({ dates, dateHandler }) {
     return !dates.includes(d)
   }
 
-  
   const handleEffectiveDateChange = (date) => {
-    if (formateDate(date) != dates[dates.length] && !state.started) {
-      dateHandler(formateDate(date));
+    if (formateDate(date) !== dates[dates.length] && !state.started) {
+      dateHandler(formateDate(date))
       setState({
         datum: date,
-        started: true
+        started: true,
       })
-
-
-    }
-    else if (date && state.started) {
-      dateHandler(formateDate(date));
+    } else if (date && state.started) {
+      dateHandler(formateDate(date))
       setState({
         datum: date,
       })
-
-
-    }
-    else {
+    } else {
       console.log('date was not selected')
     }
   }
 
-
-
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils} >
-      <KeyboardDatePicker className = {classes.b}
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <KeyboardDatePicker
+        className={classes.b}
         autoOk={true}
         variant="inline"
         inputVariant="outlined"
         format="yyyy-MM-dd"
         leftArrowIcon={<KeyboardArrowLeft />}
         rightArrowIcon={<KeyboardArrowRight />}
-        InputProps = {{ style: { fontFamily: 'Arial', color: 'white'}}}
+        InputProps={{ style: { fontFamily: 'Arial', color: 'white' } }}
         value={state.datum}
         onChange={handleEffectiveDateChange}
-        InputAdornmentProps={{ position: "start" }}
+        InputAdornmentProps={{ position: 'start' }}
         shouldDisableDate={disableWeekends}
       />
-
     </MuiPickersUtilsProvider>
-  );
+  )
 }

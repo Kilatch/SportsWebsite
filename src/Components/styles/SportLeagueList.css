@@ -12,3 +12,67 @@
     font-family: Impact, Charcoal, sans-serif;
     font-size: 1em;
 }
+
+.league-buttons{
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+    transform: translateX(50%);
+    
+}
+
+.league-name-v2{
+    padding: 1rem;
+}
+
+ .season-year:hover{
+   color: white;
+}
+
+.league-list-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    background-color: #eeeded;
+    padding: 20px;
+}
+
+.league-list-name{
+    color: #201c1c;
+    width: 100%;
+    text-align: center;
+
+}
+
+.league-list-container > a{
+    width: 100%;
+    background-color: darkgray;
+    color: white;
+    text-align: center;
+     /* border-bottom: white 1px solid; */ 
+     margin-top: 10px;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.6);
+
+} 
+
+.season-link:hover {
+    color: #424242;
+    /* background-color: white; */
+} 
+
+.no-content{
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width:768px){
+    .league-buttons{
+        width: 100%;
+        transform: translateX(0);
+    }
+}

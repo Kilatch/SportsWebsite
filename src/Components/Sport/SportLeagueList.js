@@ -14,17 +14,16 @@ export default class SportLeagueList extends Component {
       sportId: props.sportId,
       error: null,
       items: [],
-      tempBool:0
+      tempBool: 0,
     }
     this.updateComponent = this.updateComponent.bind(this)
   }
 
   componentDidMount() {
-    if(this.props.sportId!=0){
+    if (this.props.sportId !== 0) {
       this.updateComponent()
     }
   }
-
 
   updateComponent() {
     api.getLeagueBySport(this.props.sportId).then(
@@ -33,7 +32,6 @@ export default class SportLeagueList extends Component {
           items: res.data,
           sportId: this.props.sportId,
         })
-        console.log(this.state.items)
       },
       (error) => {
         this.setState({
@@ -44,7 +42,7 @@ export default class SportLeagueList extends Component {
   }
 
   render() {
-    if (this.props.sportId != this.state.sportId) {
+    if (this.props.sportId !== this.state.sportId) {
       this.updateComponent()
     }
     if (this.state.items.length > 0) {
@@ -52,17 +50,13 @@ export default class SportLeagueList extends Component {
         <div>
           <ul className="league-list">
             {this.state.items.map((data, index) => (
-       
               <div key={index}>
-                 <SeasonsForLeague leagueId={data.id} />            
-        
-                             
+                <SeasonsForLeague leagueId={data.id} />
               </div>
             ))}
           </ul>
-          {console.log(this.state.items)}
         </div>
       )
-    } else return null
+    } else return <div className="no-content">Nothing played yet</div>
   }
 }

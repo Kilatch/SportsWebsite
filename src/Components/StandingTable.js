@@ -1,47 +1,66 @@
-import React, { useState, useEffect } from 'react'
-import styles from './styles/Table.css'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import './styles/Table.css'
+import Tooltip from '@material-ui/core/Tooltip'
 
 export default function StandingTable(props) {
-
   const [state, setState] = useState({
-    items: props.items
-  });
+    items: props.items,
+  })
 
   let sortByName = () => {
-    let tmp = (a, b) => { return a.teamName.localeCompare(b.teamName) }
+    let tmp = (a, b) => {
+      return a.teamName.localeCompare(b.teamName)
+    }
     sort(tmp)
   }
   let sortByPoints = () => {
-    let tmp = (a, b) => { return b.points - a.points }
+    let tmp = (a, b) => {
+      return b.points - a.points
+    }
     sort(tmp)
   }
   let sortByGoals = () => {
-    let tmp = (a, b) => { return b.goals - a.goals }
+    let tmp = (a, b) => {
+      return b.goals - a.goals
+    }
     sort(tmp)
   }
 
   let sortByGoalsConsided = () => {
-    let tmp = (a, b) => { return b.goalsConseded - a.goalsConseded }
+    let tmp = (a, b) => {
+      return b.goalsConseded - a.goalsConseded
+    }
     sort(tmp)
   }
   let sortByGoalsDiffrens = () => {
-    let tmp = (a, b) => { return b.goalDifference - a.goalDifference }
+    let tmp = (a, b) => {
+      return b.goalDifference - a.goalDifference
+    }
     sort(tmp)
   }
   let sortByLosses = () => {
-    let tmp = (a, b) => { return b.loss - a.loss }
+    let tmp = (a, b) => {
+      return b.loss - a.loss
+    }
     sort(tmp)
   }
   let sortByDraws = () => {
-    let tmp = (a, b) => { return b.draws - a.draws }
+    let tmp = (a, b) => {
+      return b.draws - a.draws
+    }
     sort(tmp)
   }
   let sortByWins = () => {
-    let tmp = (a, b) => { return b.wins - a.wins }
+    let tmp = (a, b) => {
+      return b.wins - a.wins
+    }
     sort(tmp)
   }
   let sortByMatch = () => {
-    let tmp = (a, b) => { return b.gamesPlayed - a.gamesPlayed }
+    let tmp = (a, b) => {
+      return b.gamesPlayed - a.gamesPlayed
+    }
     sort(tmp)
   }
 
@@ -49,42 +68,67 @@ export default function StandingTable(props) {
     let table = state.items
     table.sort(fnc)
     setState({
-      items: table
+      items: table,
     })
   }
-
 
   if (state.items != null && state.items.length > 0) {
     return (
       <table>
         <thead>
           <tr>
-            <th className="teamName" onClick={sortByName}>Team</th>
-            <th onClick={sortByMatch}>MP</th>
-            <th onClick={sortByWins}>W</th>
-            <th onClick={sortByDraws}>D</th>
-            <th onClick={sortByLosses}>L</th>
-            <th className='goals' onClick={sortByGoals}>G</th>
-            <th className='goals' onClick={sortByGoalsConsided}>GC</th>
-            <th className='goals' onClick={sortByGoalsDiffrens}>GD</th>
-            <th onClick={sortByPoints}>P</th>
+            <Tooltip title="click to sort">
+              <th className="teamName" onClick={sortByName}>
+                Team
+              </th>
+            </Tooltip>
+            <Tooltip title="click to sort">
+              <th onClick={sortByMatch}>MP</th>
+            </Tooltip>
+            <Tooltip title="click to sort">
+              <th onClick={sortByWins}>W</th>
+            </Tooltip>
+            <Tooltip title="click to sort">
+              <th onClick={sortByDraws}>D</th>
+            </Tooltip>
+            <Tooltip title="click to sort">
+              <th onClick={sortByLosses}>L</th>
+            </Tooltip>
+            <Tooltip title="click to sort">
+              <th className="goals" onClick={sortByGoals}>
+                G
+              </th>
+            </Tooltip>
+            <Tooltip title="click to sort">
+              <th className="goals" onClick={sortByGoalsConsided}>
+                GC
+              </th>
+            </Tooltip>
+            <Tooltip title="click to sort">
+              <th className="goals" onClick={sortByGoalsDiffrens}>
+                GD
+              </th>
+            </Tooltip>
+            <Tooltip title="click to sort">
+              <th onClick={sortByPoints}>P</th>
+            </Tooltip>
           </tr>
         </thead>
         <tbody>
-          {state.items.map(row => (
+          {state.items.map((row) => (
             <tr key={row.teamId}>
               <td className="teamName">
-                <a href={"/team/" + row.teamId}>
+                <Link className="team-name-link" to={'/team/' + row.teamId}>
                   {row.teamName}
-                </a>
+                </Link>
               </td>
               <td>{row.gamesPlayed}</td>
               <td>{row.wins}</td>
               <td>{row.draws}</td>
               <td>{row.loss}</td>
-              <td className='goals'>{row.goals}</td>
-              <td className='goals'>{row.goalsConseded}</td>
-              <td className='goals'>{row.goalDifference}</td>
+              <td className="goals">{row.goals}</td>
+              <td className="goals">{row.goalsConseded}</td>
+              <td className="goals">{row.goalDifference}</td>
               <td>{row.points}</td>
             </tr>
           ))}
@@ -92,6 +136,6 @@ export default function StandingTable(props) {
       </table>
     )
   } else {
-    return null;
+    return null
   }
 }

@@ -4,15 +4,16 @@ import DataHantering from './DataHantering'
 import CardObj from './CardObj'
 import './general.css'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, Grid } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import SimpleMenu from './SimpleMenu'
 import DateP from './DatePickers'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 export default class Matches extends Component {
-  constructor() {
-    super()
-    this.state = {
+  cachKey = 'matchList:'
+  constructor(props) {
+    super(props)
+    this.state = JSON.parse(sessionStorage.getItem(this.cachKey)) || {
       error: null,
       items: [],
       itemsToShow: [],
@@ -54,7 +55,7 @@ export default class Matches extends Component {
   }
 
   dateHandler(date) {
-    if (this.state.started == true) {
+    if (this.state.started === true) {
       this.setState({
         itemsToShow: DataHantering.getMatchByDate(date, this.state.items),
       })
@@ -70,26 +71,31 @@ export default class Matches extends Component {
   }
 
   updateComponent() {
-    api.getAllAvailabeSeasons().then(
-      (res) => {
-        this.setState({
-          items: res,
-        })
-        this.sortData()
-        this.setState({
-          isLoaded: true,
-          itemsToShow: DataHantering.getMatchFromEveryLeague(this.state.items),
-          availableSeasons: DataHantering.getAvailableSeasonIds(
+    if (!this.state.isLoaded) {
+      api.getAllAvailabeSeasons().then(
+        (res) => {
+          let tmp = { ...this.state }
+          tmp.isLoaded = true
+          tmp.items = res
+          this.setState({ items: res })
+
+          this.sortData()
+          tmp.itemsToShow = DataHantering.getMatchFromEveryLeague(
             this.state.items
-          ),
-        })
-      },
-      (error) => {
-        this.setState({
-          error: error,
-        })
-      }
-    )
+          )
+          tmp.availableSeasons = DataHantering.getAvailableSeasonIds(
+            this.state.items
+          )
+          this.setState(tmp)
+          sessionStorage.setItem(this.cachKey, JSON.stringify(tmp))
+        },
+        (error) => {
+          this.setState({
+            error: error,
+          })
+        }
+      )
+    }
   }
 
   render() {
@@ -123,7 +129,7 @@ export default class Matches extends Component {
             </div>
           </div>
 
-          <Grid item container xs={12}>
+          <Grid item justify="space-evenly" container xs={12}>
             {this.state.itemsToShow.map((data, index) => (
               <div key={index}>
                 <CardObj d={data} getMatchTwo={this.getMatchTwo} />
