@@ -14,7 +14,7 @@ const styles = (theme) => ({
     backgroundColor: '#f7f7fa',
     height: '10%',
     borderRadius: 15,
-    marginLeft:"25%"
+    marginLeft: '25%',
   },
   saveBtn: {
     color: '#f5eded',
@@ -56,15 +56,12 @@ class AddSportForm extends React.Component {
           savedSportNameAndMessage:
             'Something went wrong while saving to the database!!',
         })
-        console.log(error)
       })
   }
 
   handleDialog(saveOk) {
-    console.log(saveOk)
     if (saveOk === 1) {
-      // this.addSportToApi(this.state.formData.sportName)
-      console.log('sub' + this.state.formData.sportName)
+      this.addSportToApi(this.state.formData.sportName)
     }
     this.setState({ submitted: false })
   }
